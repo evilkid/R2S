@@ -13,6 +13,8 @@
       <element id="archive" name="tn.esprit.R2S-ejb.jar">
         <element id="artifact" artifact-name="tn.esprit.R2S-ejb:ejb exploded" />
       </element>
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar" output-file-name="slf4j-api.jar" />
+      <element id="file-copy" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar" output-file-name="commons-lang3.jar" />
     </root>
   </artifact>
 </component>

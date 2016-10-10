@@ -33,5 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.primefaces:primefaces:5.3" level="project" />
     <orderEntry type="module" module-name="tn.esprit.R2S-ejb" scope="PROVIDED" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
   </component>
 </module>
