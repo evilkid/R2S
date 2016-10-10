@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="tn.esprit.R2S-web:war exploded">
+    <output-path>$PROJECT_DIR$/tn.esprit.R2S-web/target/tn.esprit.R2S-web</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="tn.esprit.R2S-web" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.primefaces:primefaces:5.3" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/tn.esprit.R2S-web/target/tn.esprit.R2S-web/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="tn.esprit.R2S-web/web/Web" />
+    </root>
+  </artifact>
+</component>

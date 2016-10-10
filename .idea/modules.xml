@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/R2S.iml" filepath="$PROJECT_DIR$/R2S.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tn.esprit.R2S-ear/tn.esprit.R2S-ear.iml" filepath="$PROJECT_DIR$/tn.esprit.R2S-ear/tn.esprit.R2S-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tn.esprit.R2S-ejb/tn.esprit.R2S-ejb.iml" filepath="$PROJECT_DIR$/tn.esprit.R2S-ejb/tn.esprit.R2S-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tn.esprit.R2S-web/tn.esprit.R2S-web.iml" filepath="$PROJECT_DIR$/tn.esprit.R2S-web/tn.esprit.R2S-web.iml" />
+    </modules>
+  </component>
+</project>

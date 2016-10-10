@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="tn.esprit.R2S-ear:ear">
+    <output-path>$PROJECT_DIR$/tn.esprit.R2S-ear/target</output-path>
+    <root id="archive" name="tn.esprit.R2S-ear.ear">
+      <element id="artifact" artifact-name="tn.esprit.R2S-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="tn.esprit.R2S-ejb:ejb exploded">
+    <output-path>$PROJECT_DIR$/tn.esprit.R2S-ejb/target/tn.esprit.R2S-ejb</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="tn.esprit.R2S-ejb/ejb/EJB" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/tn.esprit.R2S-ejb/target/tn.esprit.R2S-ejb/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="tn.esprit.R2S-ejb" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="tn.esprit.R2S-web:war">
+    <output-path>$PROJECT_DIR$/tn.esprit.R2S-web/target</output-path>
+    <root id="archive" name="tn.esprit.R2S-web.war">
+      <element id="artifact" artifact-name="tn.esprit.R2S-web:war exploded" />
+    </root>
+  </artifact>
+</component>
