@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="tn.esprit.R2S.model" v="2.6.2" thm="PMacColorScheme" persistenceUnitName="SMARTHR" sm="false" xs="false" id="_14760310720711" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity lbl-ref="_14760338814422" xre="false" compositePrimaryKeyClass="UsersPK" abs="true" class="Users" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476033881413">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="firstname" id="_14760339527064">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="lastname" id="_14760339576665">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="birthday" id="_14760339615566">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="username" id="_14760339647747">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="password" id="_14760339680118">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="email" id="_14760339700609">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="tel" id="_147603397261910">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="tn.esprit.R2S.utils.enums.Gender" visibile="true" name="gender" id="_147603696046084">
+                <jpa:bv/>
+                <jpa:enumerated>DEFAULT</jpa:enumerated>
+            </jpa:basic>
+            <jpa:embedded connected-class-id="_1476037419672" visibile="true" name="address" id="_1476037508126116">
+                <jpa:bv/>
+            </jpa:embedded>
+            <jpa:id attribute-type="Long" visibile="true" name="cin" id="_14760338814422">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Userses.findAll">
+            <jpa:query>Select e from Userses e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByFirstname">
+            <jpa:query>Select u from Userses u where u.firstname=:firstname</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByLastname">
+            <jpa:query>Select u from Userses u where u.lastname=:lastname</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByBirthday">
+            <jpa:query>Select u from Userses u where u.birthday=:birthday</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="User.findByUsername">
+            <jpa:query>Select u from Userses u where u.username=:username</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByPassword">
+            <jpa:query>Select u from Userses u where u.password=:password</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByEmail">
+            <jpa:query>Select u from Userses u where u.email=:email</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByTel">
+            <jpa:query>Select u from Userses u where u.tel=:tel</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByAddress">
+            <jpa:query>Select u from Userses u where u.address=:address</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Userses.findByGender">
+            <jpa:query>Select u from Userses u where u.gender=:gender</jpa:query>
+        </jpa:nq>
+        <jpa:inheritance strategy="SINGLE_TABLE"/>
+        <jpa:discriminator-column name="user_role" discriminator-type="STRING" column-definition="" length="30"/>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="EmployeePK" abs="false" class="Employee" superclassId="_1476033881413" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476034073651">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" visibile="true" name="credibility" id="_147603411175114">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476034147787" connected-attribute-id="_147603428402118" visibile="true" name="referredCandidates" id="_147603428402219"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Employee.findAll">
+            <jpa:query>Select e from Employee e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Employee.findByCredibility">
+            <jpa:query>Select e from Employee e where e.credibility=:credibility</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity lbl-ref="_14760338814422" xre="false" compositePrimaryKeyClass="CandidatePK" abs="false" class="Candidate" superclassId="_1476033881413" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476034147787">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034073651" connected-attribute-id="_147603428402219" visibile="true" name="referee" id="_147603428402118"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476037816497" connected-attribute-id="_1476038773279698" visibile="true" name="certifications" id="_1476038773279699"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476037942588" connected-attribute-id="_1476038777837700" visibile="true" name="educations" id="_1476038777837701"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476038010450" connected-attribute-id="_1476038782381702" visibile="true" name="experiences" id="_1476038782381703"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476044588945" connected-attribute-id="_14760446614341009" visibile="true" name="jobs" id="_14760446614351010"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476044819946" connected-attribute-id="_14760449011291038" visibile="true" name="interviews" id="_14760449011291039"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476045397248" connected-attribute-id="_14760455526441209" visibile="true" name="candidateQuizModels" id="_14760455526441210"/>
+            <jpa:one-to-one orp="false" optional="true" primaryKey="false" connected-entity-id="_1476039441203" connected-attribute-id="_1476039529075909" visibile="true" name="candidateSkill" id="_1476039529075910"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Candidate.findAll">
+            <jpa:query>Select e from Candidate e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="RecruitmentManagerPK" abs="false" class="RecruitmentManager" superclassId="_1476033881413" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476034329389">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476034544310" connected-attribute-id="_147603460388658" visibile="true" name="emailModels" id="_147603460388759"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476036594207" connected-attribute-id="_14760447777311023" visibile="true" name="notifications" id="_14760447777311024"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476044819946" connected-attribute-id="_14760449214801040" visibile="true" name="interviews" id="_14760449214801041"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="RecruitmentManager.findAll">
+            <jpa:query>Select e from RecruitmentManager e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="ChiefHumanResourcesOfficerPK" abs="false" class="ChiefHumanResourcesOfficer" superclassId="_1476033881413" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476034356257">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes/>
+        <jpa:nq e="false" name="ChiefHumanResourcesOfficer.findAll">
+            <jpa:query>Select e from ChiefHumanResourcesOfficer e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="EmailModelPK" abs="false" class="EmailModel" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476034544310">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_147603455965056">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="content" id="_147603456459957">
+                <jpa:bv/>
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="60000" precision="0" scale="0"/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034329389" connected-attribute-id="_147603460388759" visibile="true" name="recruitmentManager" id="_147603460388658"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_147603454431154">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="EmailModel.findAll">
+            <jpa:query>Select e from EmailModel e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="EmailModel.findByName">
+            <jpa:query>Select e from EmailModel e where e.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="EmailModel.findByContent">
+            <jpa:query>Select e from EmailModel e where e.content=:content</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity lbl-ref="_147603659420882" xre="false" compositePrimaryKeyClass="NotificationPK" abs="false" class="Notification" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476036594207">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="date" ft="true" id="_14760447584491021">
+                <jpa:bv/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="message" id="_14760447627341022">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034329389" connected-attribute-id="_14760447777311024" visibile="true" name="recruitmentManager" id="_14760447777311023"/>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476043610560" visibile="true" name="job" id="_14760448045331027"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_147603659420882">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Notification.findAll">
+            <jpa:query>Select e from Notification e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Notification.findByDate">
+            <jpa:query>Select n from Notification n where n.date=:date</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Notification.findByMessage">
+            <jpa:query>Select n from Notification n where n.message=:message</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity lbl-ref="_1476037816499146" xre="false" compositePrimaryKeyClass="CertificationPK" abs="false" class="Certification" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476037816497">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_1476037823577148">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateStart" id="_1476037826090149">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateEnd" id="_1476037836368150">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="url" id="_1476037842483151">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034147787" connected-attribute-id="_1476038773279699" visibile="true" name="candidate" id="_1476038773279698"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476037816499146">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Certification.findAll">
+            <jpa:query>Select e from Certification e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Certification.findByName">
+            <jpa:query>Select c from Certification c where c.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Certification.findByDateStart">
+            <jpa:query>Select c from Certification c where c.dateStart=:dateStart</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Certification.findByDateEnd">
+            <jpa:query>Select c from Certification c where c.dateEnd=:dateEnd</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Certification.findByUrl">
+            <jpa:query>Select c from Certification c where c.url=:url</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="EducationPK" abs="false" class="Education" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476037942588">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="degree" id="_1476037951600157">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="institution" id="_1476037960732158">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateStart" id="_1476037964853159">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateEnd" id="_1476037967672160">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034147787" connected-attribute-id="_1476038777837701" visibile="true" name="candidate" id="_1476038777837700"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476037942589155">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Education.findAll">
+            <jpa:query>Select e from Education e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Education.findByDegree">
+            <jpa:query>Select e from Education e where e.degree=:degree</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Education.findByInstitution">
+            <jpa:query>Select e from Education e where e.institution=:institution</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Education.findByDateStart">
+            <jpa:query>Select e from Education e where e.dateStart=:dateStart</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Education.findByDateEnd">
+            <jpa:query>Select e from Education e where e.dateEnd=:dateEnd</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="ExperiencePK" abs="false" class="Experience" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476038010450">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="jobTitle" id="_1476038018816164">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="organization" id="_1476038026306165">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateStart" id="_1476038031669166">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="dateEnd" id="_1476038035903167">
+                <jpa:bv/>
+                <jpa:temporal>DATE</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="post" id="_1476038040093168">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="description" id="_1476038044331169">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034147787" connected-attribute-id="_1476038782381703" visibile="true" name="candidate" id="_1476038782381702"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476038010452162">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Experience.findAll">
+            <jpa:query>Select e from Experience e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByJobTitle">
+            <jpa:query>Select e from Experience e where e.jobTitle=:jobTitle</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByOrganization">
+            <jpa:query>Select e from Experience e where e.organization=:organization</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByDateStart">
+            <jpa:query>Select e from Experience e where e.dateStart=:dateStart</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByDateEnd">
+            <jpa:query>Select e from Experience e where e.dateEnd=:dateEnd</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByPost">
+            <jpa:query>Select e from Experience e where e.post=:post</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Experience.findByDescription">
+            <jpa:query>Select e from Experience e where e.description=:description</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="SkillPK" abs="false" class="Skill" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476038846806">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_1476038861491764">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-one orp="false" optional="true" primaryKey="false" connected-entity-id="_1476039441203" connected-attribute-id="_1476039524404907" visibile="true" name="candidateSkill" id="_1476039524404908"/>
+            <jpa:many-to-many own="true" collection-type="java.util.List" connected-entity-id="_1476043610560" connected-attribute-id="_1476044452940991" visibile="true" name="jobs" id="_1476044452939990"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476038846808762">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Skill.findAll">
+            <jpa:query>Select e from Skill e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Skill.findByName">
+            <jpa:query>Select s from Skill s where s.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="IDCLASS" compositePrimaryKeyClass="CandidateSkillPK" abs="false" class="CandidateSkill" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476039441203">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="Integer" visibile="true" name="level" id="_1476039533608911">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="true" connected-entity-id="_1476038846806" connected-attribute-id="_1476039524404908" visibile="true" name="skill" id="_1476039524404907"/>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="true" connected-entity-id="_1476034147787" connected-attribute-id="_1476039529075910" visibile="true" name="candidate" id="_1476039529075909"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="CandidateSkill.findAll">
+            <jpa:query>Select e from CandidateSkill e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CandidateSkill.findByLevel">
+            <jpa:query>Select c from CandidateSkill c where c.level=:level</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="JobPK" abs="false" class="Job" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476043610560">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_1476043618033986">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="description" id="_1476043619951987">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Double" visibile="true" name="salary" id="_1476043621151988">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="tn.esprit.R2S.utils.enums.JobStatus" visibile="true" name="status" id="_1476043639966989">
+                <jpa:bv/>
+                <jpa:enumerated>DEFAULT</jpa:enumerated>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476045068953" connected-attribute-id="_14760452006711171" visibile="true" name="quizModel" id="_14760452006711170"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476044493596" connected-attribute-id="_1476044561523997" visibile="true" name="rewards" id="_1476044561524998"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476044588945" connected-attribute-id="_14760446556631007" visibile="true" name="candidates" id="_14760446556641008"/>
+            <jpa:many-to-many collection-type="java.util.List" connected-entity-id="_1476038846806" connected-attribute-id="_1476044452939990" visibile="true" name="skills" id="_1476044452940991"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476043610563984">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Job.findAll">
+            <jpa:query>Select e from Job e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Job.findByName">
+            <jpa:query>Select j from Job j where j.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Job.findByDescription">
+            <jpa:query>Select j from Job j where j.description=:description</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Job.findBySalary">
+            <jpa:query>Select j from Job j where j.salary=:salary</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Job.findByStatus">
+            <jpa:query>Select j from Job j where j.status=:status</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="RewardPK" abs="false" class="Reward" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476044493596">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="tn.esprit.R2S.utils.enums.Progress" visibile="true" name="progress" id="_1476044506237995">
+                <jpa:bv/>
+                <jpa:enumerated>DEFAULT</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="points" id="_1476044512299996">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476043610560" connected-attribute-id="_1476044561524998" visibile="true" name="job" id="_1476044561523997"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_1476044493613993">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="points.findAll">
+            <jpa:query>Select e from points e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="points.findByProgress">
+            <jpa:query>Select r from points r where r.progress=:progress</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Reward.findByPoints">
+            <jpa:query>Select r from points r where r.points=:points</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyType="IDCLASS" compositePrimaryKeyClass="CandidateJobPK" abs="false" class="CandidateJob" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476044588945">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="tn.esprit.R2S.utils.enums.Progress" visibile="true" name="progress" id="_14760446927301015">
+                <jpa:bv/>
+                <jpa:enumerated>DEFAULT</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="date" id="_14760446974041016">
+                <jpa:bv/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="true" connected-entity-id="_1476043610560" connected-attribute-id="_14760446556641008" visibile="true" name="job" id="_14760446556631007"/>
+            <jpa:many-to-one optional="true" primaryKey="true" connected-entity-id="_1476034147787" connected-attribute-id="_14760446614351010" visibile="true" name="candidate" id="_14760446614341009"/>
+        </jpa:attributes>
+        <jpa:nq e="false" name="CandidateJob.findAll">
+            <jpa:query>Select e from CandidateJob e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CandidateJob.findByProgress">
+            <jpa:query>Select c from CandidateJob c where c.progress=:progress</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CandidateJob.findByDate">
+            <jpa:query>Select c from CandidateJob c where c.date=:date</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="InterviewPK" abs="false" class="Interview" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476044819946">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="date" id="_14760448303371032">
+                <jpa:bv/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476043610560" visibile="true" name="job" id="_14760448724471035"/>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034147787" connected-attribute-id="_14760449011291039" visibile="true" name="candidate" id="_14760449011291038"/>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034329389" connected-attribute-id="_14760449214801041" visibile="true" name="recruitmentManager" id="_14760449214801040"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760448199861030">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Interview.findAll">
+            <jpa:query>Select e from Interview e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Interview.findByDate">
+            <jpa:query>Select i from Interview i where i.date=:date</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity lbl-ref="_14760450689841159" xre="false" compositePrimaryKeyClass="QuizModelPK" abs="false" class="QuizModel" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045068953">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_14760450935571161">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Integer" visibile="true" name="duration" id="_14760451038851162">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Integer" visibile="true" name="questionsNumber" id="_14760451079051163">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Integer" visibile="true" name="answersNumber" id="_14760451141271164">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Boolean" visibile="true" name="penalty" id="_14760451670791167">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476043610560" connected-attribute-id="_14760452006711170" visibile="true" name="jobs" id="_14760452006711171"/>
+            <jpa:many-to-many collection-type="java.util.List" connected-entity-id="_1476045156001" connected-attribute-id="_14760452668651175" visibile="true" name="questions" id="_14760452668661176"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760450689841159">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="QuizModel.findAll">
+            <jpa:query>Select e from QuizModel e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="QuizModel.findByName">
+            <jpa:query>Select q from QuizModel q where q.name=:name</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="QuizModel.findByDuration">
+            <jpa:query>Select q from QuizModel q where q.duration=:duration</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="QuizModel.findByQuestionsNumber">
+            <jpa:query>Select q from QuizModel q where q.questionsNumber=:questionsNumber</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="QuizModel.findByAnswersNumber">
+            <jpa:query>Select q from QuizModel q where q.answersNumber=:answersNumber</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="QuizModel.findByPenalty">
+            <jpa:query>Select q from QuizModel q where q.penalty=:penalty</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="QuestionPK" abs="false" class="Question" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045156001">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="question" id="_14760452399121172">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="tn.esprit.R2S.utils.enums.QuestionType" visibile="true" name="type" id="_14760452473091173">
+                <jpa:bv/>
+                <jpa:enumerated>DEFAULT</jpa:enumerated>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="score" id="_14760452528841174">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476045566483" connected-attribute-id="_14760457751721233" visibile="true" name="candidateAnswer" id="_14760457751711232"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476045300736" connected-attribute-id="_14760453406321189" visibile="true" name="answers" id="_14760453406331190"/>
+            <jpa:many-to-many own="true" collection-type="java.util.List" connected-entity-id="_1476045068953" connected-attribute-id="_14760452668661176" visibile="true" name="quizModels" id="_14760452668651175"/>
+            <jpa:many-to-many collection-type="java.util.List" connected-entity-id="_1476045273901" connected-attribute-id="_14760452901081180" visibile="true" name="categories" id="_14760452901081181"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760451560391165">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Question.findAll">
+            <jpa:query>Select e from Question e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Question.findByQuestion">
+            <jpa:query>Select q from Question q where q.question=:question</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Question.findByType">
+            <jpa:query>Select q from Question q where q.type=:type</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Question.findByScore">
+            <jpa:query>Select q from Question q where q.score=:score</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CategoryPK" abs="false" class="Category" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045273901">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="name" id="_14760452822701179">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-many own="true" collection-type="java.util.List" connected-entity-id="_1476045156001" connected-attribute-id="_14760452901081181" visibile="true" name="questions" id="_14760452901081180"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760452739611177">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Category.findAll">
+            <jpa:query>Select e from Category e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Category.findByName">
+            <jpa:query>Select c from Category c where c.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="AnswerPK" abs="false" class="Answer" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045300736">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="answer" id="_14760453086581184">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="Boolean" visibile="true" name="correct" id="_14760453120871186">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476045156001" connected-attribute-id="_14760453406331190" visibile="true" name="question" id="_14760453406321189"/>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476045566483" connected-attribute-id="_14760457793141235" visibile="true" name="candidateAnswer" id="_14760457793141234"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760453008111182">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Answer.findAll">
+            <jpa:query>Select e from Answer e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Answer.findByAnswer">
+            <jpa:query>Select a from Answer a where a.answer=:answer</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Answer.findByAttribute1">
+            <jpa:query>Select a from Answer a where a.attribute1=:attribute1</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Answer.findByCorrect">
+            <jpa:query>Select a from Answer a where a.correct=:correct</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CandidateQuizModelPK" abs="false" class="CandidateQuizModel" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045397248">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="java.util.Date" visibile="true" name="passingDate" id="_14760454111851195">
+                <jpa:bv/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1476034147787" connected-attribute-id="_14760455526441210" visibile="true" name="candidate" id="_14760455526441209"/>
+            <jpa:one-to-one orp="false" optional="true" primaryKey="false" connected-entity-id="_1476045566483" connected-attribute-id="_14760456062901217" visibile="true" name="candidateAnswer" id="_14760456062911218"/>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1476045068953" visibile="true" name="quizModel" id="_14760456685711223"/>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1476043610560" visibile="true" name="job" id="_14760456784471224"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760455386281206">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="CandidateQuizModel.findAll">
+            <jpa:query>Select e from CandidateQuizModel e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="CandidateQuizModel.findByPassingDate">
+            <jpa:query>Select c from CandidateQuizModel c where c.passingDate=:passingDate</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity xre="false" compositePrimaryKeyClass="CandidateAnswerPK" abs="false" class="CandidateAnswer" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476045566483">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476045156001" connected-attribute-id="_14760457751711232" visibile="true" name="questions" id="_14760457751721233"/>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" connected-entity-id="_1476045300736" connected-attribute-id="_14760457793141234" visibile="true" name="answers" id="_14760457793141235"/>
+            <jpa:one-to-one own="true" orp="false" optional="true" primaryKey="false" connected-entity-id="_1476045397248" connected-attribute-id="_14760456062911218" visibile="true" name="candidateQuizModel" id="_14760456062901217"/>
+            <jpa:id attribute-type="Long" visibile="true" name="id" id="_14760455665881211">
+                <jpa:bv/>
+                <jpa:generated-value strategy="AUTO"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="CandidateAnswer.findAll">
+            <jpa:query>Select e from CandidateAnswer e</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:embeddable abs="false" class="Address" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476037419672">
+        <jpa:ts e="true"/>
+        <jpa:hc e="true"/>
+        <jpa:eq e="true"/>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" visibile="true" name="street" id="_1476037442143112">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="city" id="_1476037480827113">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="state" id="_1476037482891114">
+                <jpa:bv/>
+            </jpa:basic>
+            <jpa:basic attribute-type="String" visibile="true" name="country" id="_1476037488552115">
+                <jpa:bv/>
+            </jpa:basic>
+        </jpa:attributes>
+    </jpa:embeddable>
+    <jpa:snp e="true" loc="BEFORE_PACKAGE">/**
+ * This file was generated by the JPA Modeler
+ */</jpa:snp>
+    <jpa:c>
+        <ct>java.util.List</ct>
+        <ct>java.util.Map</ct>
+        <ct>java.util.Set</ct>
+        <ct>java.util.Collection</ct>
+        <db u="jdbc:mysql://localhost:3306/hrsmart?zeroDateTimeBehavior=convertToNull" n="root" p="" d="com.mysql.jdbc.Driver"/>
+    </jpa:c>
+    <jpa:diagram>
+        <plane elementRef="_14760310720711">
+            <shape elementRef="_1476033881413">
+                <Bounds x="578.0" y="285.0" width="130.0" height="273.0"/>
+            </shape>
+            <shape elementRef="_1476034073651">
+                <Bounds x="1322.0" y="32.0" width="164.0" height="92.0"/>
+            </shape>
+            <shape elementRef="_1476034147787">
+                <Bounds x="1083.0" y="285.0" width="175.0" height="205.0"/>
+            </shape>
+            <shape elementRef="_1476034329389">
+                <Bounds x="1322.0" y="1170.0" width="216.0" height="100.0"/>
+            </shape>
+            <shape elementRef="_1476034356257">
+                <Bounds x="248.0" y="32.0" width="266.0" height="24.0"/>
+            </shape>
+            <shape elementRef="_1476034544310">
+                <Bounds x="1083.0" y="1486.0" width="167.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_1476036594207">
+                <Bounds x="1602.0" y="1486.0" width="167.0" height="168.0"/>
+            </shape>
+            <shape elementRef="_1476037816497">
+                <Bounds x="854.0" y="622.0" width="165.0" height="189.0"/>
+            </shape>
+            <shape elementRef="_1476037942588">
+                <Bounds x="854.0" y="32.0" width="152.0" height="189.0"/>
+            </shape>
+            <shape elementRef="_1476038010450">
+                <Bounds x="1322.0" y="622.0" width="160.0" height="231.0"/>
+            </shape>
+            <shape elementRef="_1476038846806">
+                <Bounds x="1843.0" y="622.0" width="134.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_1476039441203">
+                <Bounds x="1602.0" y="285.0" width="177.0" height="113.0"/>
+            </shape>
+            <shape elementRef="_1476043610560">
+                <Bounds x="1843.0" y="1170.0" width="128.0" height="252.0"/>
+            </shape>
+            <shape elementRef="_1476044493596">
+                <Bounds x="2041.0" y="1486.0" width="140.0" height="147.0"/>
+            </shape>
+            <shape elementRef="_1476044588945">
+                <Bounds x="1602.0" y="917.0" width="174.0" height="134.0"/>
+            </shape>
+            <shape elementRef="_1476044819946">
+                <Bounds x="1083.0" y="917.0" width="167.0" height="168.0"/>
+            </shape>
+            <shape elementRef="_1476045068953">
+                <Bounds x="854.0" y="1170.0" width="155.0" height="231.0"/>
+            </shape>
+            <shape elementRef="_1476045156001">
+                <Bounds x="578.0" y="1486.0" width="152.0" height="231.0"/>
+            </shape>
+            <shape elementRef="_1476045273901">
+                <Bounds x="854.0" y="1781.0" width="147.0" height="126.0"/>
+            </shape>
+            <shape elementRef="_1476045300736">
+                <Bounds x="32.0" y="1486.0" width="152.0" height="168.0"/>
+            </shape>
+            <shape elementRef="_1476045397248">
+                <Bounds x="578.0" y="917.0" width="212.0" height="189.0"/>
+            </shape>
+            <shape elementRef="_1476045566483">
+                <Bounds x="248.0" y="1170.0" width="197.0" height="134.0"/>
+            </shape>
+            <shape elementRef="_1476037419672">
+                <Bounds x="248.0" y="622.0" width="148.0" height="121.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>
