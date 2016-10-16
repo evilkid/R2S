@@ -6,10 +6,6 @@ package tn.esprit.R2S.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- *
- * @author $author
- */
 public class CandidateJobPK implements Serializable {
 
     private Long job;
@@ -17,7 +13,6 @@ public class CandidateJobPK implements Serializable {
     private Long candidate;
 
     public CandidateJobPK() {
-
     }
 
     public Long getJob() {

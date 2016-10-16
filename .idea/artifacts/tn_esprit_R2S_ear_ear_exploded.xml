@@ -6,7 +6,6 @@
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/tn.esprit.R2S-ear/target/tn.esprit.R2S-ear/META-INF/MANIFEST.MF" />
       </element>
-      <element id="dir-copy" path="$PROJECT_DIR$/tn.esprit.R2S-ear/src/main/application" />
       <element id="archive" name="tn.esprit.R2S-web.war">
         <element id="artifact" artifact-name="tn.esprit.R2S-web:war exploded" />
       </element>

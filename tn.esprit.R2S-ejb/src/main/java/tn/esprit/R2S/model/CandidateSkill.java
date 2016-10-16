@@ -10,14 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.OneToOne;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 @IdClass(CandidateSkillPK.class)
 public class CandidateSkill implements Serializable {
 
-    @Basic
+
     private Integer level;
 
     @Id

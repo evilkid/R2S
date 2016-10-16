@@ -15,18 +15,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import tn.esprit.R2S.util.enums.Progress;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 @IdClass(CandidateJobPK.class)
 public class CandidateJob implements Serializable {
 
-    @Basic
     @Enumerated
     private Progress progress;
 
-    @Basic
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 

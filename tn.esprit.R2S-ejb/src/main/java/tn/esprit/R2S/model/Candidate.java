@@ -10,9 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class Candidate extends Users implements Serializable {
 

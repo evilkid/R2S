@@ -12,9 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class CandidateAnswer implements Serializable {
 

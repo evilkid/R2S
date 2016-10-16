@@ -15,9 +15,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class CandidateQuizModel implements Serializable {
 
@@ -25,7 +22,7 @@ public class CandidateQuizModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date passingDate;
 

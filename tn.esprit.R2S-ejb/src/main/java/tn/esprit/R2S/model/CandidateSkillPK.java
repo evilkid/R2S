@@ -6,10 +6,6 @@ package tn.esprit.R2S.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-/**
- *
- * @author $author
- */
 public class CandidateSkillPK implements Serializable {
 
     private Long skill;

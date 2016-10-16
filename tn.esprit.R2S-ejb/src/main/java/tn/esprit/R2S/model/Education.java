@@ -3,20 +3,10 @@
  */
 package tn.esprit.R2S.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class Education implements Serializable {
 
@@ -24,17 +14,17 @@ public class Education implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String degree;
 
-    @Basic
+
     private String institution;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateStart;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
 

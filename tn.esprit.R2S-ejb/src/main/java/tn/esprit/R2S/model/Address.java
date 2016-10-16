@@ -7,22 +7,18 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 
-/**
- * @author Ouerghi Yassine
- */
 @Embeddable
 public class Address implements Serializable {
 
-    @Basic
     private String street;
 
-    @Basic
+
     private String city;
 
-    @Basic
+
     private String state;
 
-    @Basic
+
     private String country;
 
     public String getStreet() {

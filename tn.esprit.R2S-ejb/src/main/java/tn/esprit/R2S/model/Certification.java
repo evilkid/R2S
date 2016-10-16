@@ -14,9 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class Certification implements Serializable {
 
@@ -24,18 +21,18 @@ public class Certification implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateStart;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
 
-    @Basic
+
     private String url;
 
     @ManyToOne(targetEntity = Candidate.class)

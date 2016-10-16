@@ -12,17 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-/**
- * @author Ouerghi Yassine
- */
 @Entity
 public class Category implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
     @ManyToMany(targetEntity = Question.class)
