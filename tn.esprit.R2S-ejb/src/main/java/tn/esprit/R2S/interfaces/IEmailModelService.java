@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface IEmailModelService {
-    void create(EmailModel entity);
+    void create(EmailModel emailModel);
 
-    EmailModel edit(EmailModel entity);
+    EmailModel edit(EmailModel emailModel);
 
-    void remove(EmailModel entity);
+    void remove(EmailModel emailModel);
 
     EmailModel find(Object id);
 

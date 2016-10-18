@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface IEducationService {
-    void create(Education entity);
+    void create(Education education);
 
-    Education edit(Education entity);
+    Education edit(Education education);
 
-    void remove(Education entity);
+    void remove(Education education);
 
     Education find(Object id);
 

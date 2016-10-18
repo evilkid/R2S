@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface ICandidateService {
-    void create(Candidate entity);
+    void create(Candidate candidate);
 
-    Candidate edit(Candidate entity);
+    Candidate edit(Candidate candidate);
 
-    void remove(Candidate entity);
+    void remove(Candidate candidate);
 
     Candidate find(Object id);
 

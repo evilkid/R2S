@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface IChiefHumanResourcesOfficerService {
-    void create(ChiefHumanResourcesOfficer entity);
+    void create(ChiefHumanResourcesOfficer chiefHumanResourcesOfficer);
 
-    ChiefHumanResourcesOfficer edit(ChiefHumanResourcesOfficer entity);
+    ChiefHumanResourcesOfficer edit(ChiefHumanResourcesOfficer chiefHumanResourcesOfficer);
 
-    void remove(ChiefHumanResourcesOfficer entity);
+    void remove(ChiefHumanResourcesOfficer chiefHumanResourcesOfficer);
 
     ChiefHumanResourcesOfficer find(Object id);
 

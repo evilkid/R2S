@@ -10,7 +10,7 @@ import javax.persistence.MapsId;
 import java.io.Serializable;
 
 /**
- * @author Ouerghi Yassine
+ * @author EvilKids
  */
 @Entity
 public class CandidateSkill implements Serializable {

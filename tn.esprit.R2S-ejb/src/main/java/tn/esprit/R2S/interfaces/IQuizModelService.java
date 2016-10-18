@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IQuizModelService {
-    void create(QuizModel entity);
+    void create(QuizModel quizModel);
 
-    QuizModel edit(QuizModel entity);
+    QuizModel edit(QuizModel quizModel);
 
-    void remove(QuizModel entity);
+    void remove(QuizModel quizModel);
 
     QuizModel find(Object id);
 

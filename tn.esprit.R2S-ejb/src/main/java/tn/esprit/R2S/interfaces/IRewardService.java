@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IRewardService {
-    void create(Reward entity);
+    void create(Reward reward);
 
-    Reward edit(Reward entity);
+    Reward edit(Reward reward);
 
-    void remove(Reward entity);
+    void remove(Reward reward);
 
     Reward find(Object id);
 

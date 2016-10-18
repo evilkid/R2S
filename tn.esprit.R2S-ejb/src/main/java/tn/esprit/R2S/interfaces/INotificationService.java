@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface INotificationService {
-    void create(Notification entity);
+    void create(Notification notification);
 
-    Notification edit(Notification entity);
+    Notification edit(Notification notification);
 
-    void remove(Notification entity);
+    void remove(Notification notification);
 
     Notification find(Object id);
 

@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface ICategoryService {
-    void create(Category entity);
+    void create(Category category);
 
-    Category edit(Category entity);
+    Category edit(Category category);
 
-    void remove(Category entity);
+    void remove(Category category);
 
     Category find(Object id);
 

@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface ICertificationService {
-    void create(Certification entity);
+    void create(Certification certification);
 
-    Certification edit(Certification entity);
+    Certification edit(Certification certification);
 
-    void remove(Certification entity);
+    void remove(Certification certification);
 
     Certification find(Object id);
 

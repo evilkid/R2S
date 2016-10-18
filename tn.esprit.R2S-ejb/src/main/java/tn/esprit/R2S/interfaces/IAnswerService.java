@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface IAnswerService {
-    void create(Answer entity);
+    void create(Answer answer);
 
-    Answer edit(Answer entity);
+    Answer edit(Answer answer);
 
-    void remove(Answer entity);
+    void remove(Answer answer);
 
     Answer find(Object id);
 

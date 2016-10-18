@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Ouerghi Yassine
+ * @author EvilKids
  */
 @Entity
 public class CandidateQuizModel implements Serializable {

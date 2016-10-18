@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author Ouerghi Yassine
+ * @author EvilKids
  */
 @Entity
 public class Answer implements Serializable {

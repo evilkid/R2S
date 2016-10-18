@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * @author $author
+ * @author EvilKids
  */
 @Embeddable
 public class CandidateSkillPK implements Serializable {

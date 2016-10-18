@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IEmployeeService {
-    void create(Employee entity);
+    void create(Employee employee);
 
-    Employee edit(Employee entity);
+    Employee edit(Employee employee);
 
-    void remove(Employee entity);
+    void remove(Employee employee);
 
     Employee find(Object id);
 

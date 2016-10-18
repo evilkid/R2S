@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Ouerghi Yassine
+ * @author EvilKids
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)

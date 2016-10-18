@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface ISkillService {
-    void create(Skill entity);
+    void create(Skill skill);
 
-    Skill edit(Skill entity);
+    Skill edit(Skill skill);
 
-    void remove(Skill entity);
+    void remove(Skill skill);
 
     Skill find(Object id);
 

@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IJobService {
-    void create(Job entity);
+    void create(Job job);
 
-    Job edit(Job entity);
+    Job edit(Job job);
 
-    void remove(Job entity);
+    void remove(Job job);
 
     Job find(Object id);
 

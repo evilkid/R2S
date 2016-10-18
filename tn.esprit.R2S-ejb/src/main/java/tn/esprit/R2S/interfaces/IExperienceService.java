@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IExperienceService {
-    void create(Experience entity);
+    void create(Experience experience);
 
-    Experience edit(Experience entity);
+    Experience edit(Experience experience);
 
-    void remove(Experience entity);
+    void remove(Experience experience);
 
     Experience find(Object id);
 

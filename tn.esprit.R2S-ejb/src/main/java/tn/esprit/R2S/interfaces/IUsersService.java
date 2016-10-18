@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IUsersService {
-    void create(Users entity);
+    void create(Users users);
 
-    Users edit(Users entity);
+    Users edit(Users users);
 
-    void remove(Users entity);
+    void remove(Users users);
 
     Users find(Object id);
 

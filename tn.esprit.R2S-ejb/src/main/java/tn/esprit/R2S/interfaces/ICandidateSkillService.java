@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface ICandidateSkillService {
-    void create(CandidateSkill entity);
+    void create(CandidateSkill candidateSkill);
 
-    CandidateSkill edit(CandidateSkill entity);
+    CandidateSkill edit(CandidateSkill candidateSkill);
 
-    void remove(CandidateSkill entity);
+    void remove(CandidateSkill candidateSkill);
 
     CandidateSkill find(Object id);
 

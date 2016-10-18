@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IInterviewService {
-    void create(Interview entity);
+    void create(Interview interview);
 
-    Interview edit(Interview entity);
+    Interview edit(Interview interview);
 
-    void remove(Interview entity);
+    void remove(Interview interview);
 
     Interview find(Object id);
 

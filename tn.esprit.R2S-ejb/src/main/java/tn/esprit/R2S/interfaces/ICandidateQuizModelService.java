@@ -7,11 +7,11 @@ import java.util.List;
 
 @Local
 public interface ICandidateQuizModelService {
-    void create(CandidateQuizModel entity);
+    void create(CandidateQuizModel candidateQuizModel);
 
-    CandidateQuizModel edit(CandidateQuizModel entity);
+    CandidateQuizModel edit(CandidateQuizModel candidateQuizModel);
 
-    void remove(CandidateQuizModel entity);
+    void remove(CandidateQuizModel candidateQuizModel);
 
     CandidateQuizModel find(Object id);
 

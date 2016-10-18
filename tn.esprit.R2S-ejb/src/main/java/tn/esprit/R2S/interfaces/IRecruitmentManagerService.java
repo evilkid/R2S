@@ -8,11 +8,11 @@ import java.util.List;
  * Created by evilkid on 10/18/2016.
  */
 public interface IRecruitmentManagerService {
-    void create(RecruitmentManager entity);
+    void create(RecruitmentManager recruitmentManager);
 
-    RecruitmentManager edit(RecruitmentManager entity);
+    RecruitmentManager edit(RecruitmentManager recruitmentManager);
 
-    void remove(RecruitmentManager entity);
+    void remove(RecruitmentManager recruitmentManager);
 
     RecruitmentManager find(Object id);
 
