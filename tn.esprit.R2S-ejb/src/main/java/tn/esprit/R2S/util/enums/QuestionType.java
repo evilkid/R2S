@@ -6,7 +6,6 @@
 package tn.esprit.R2S.util.enums;
 
 /**
- *
  * @author Ouerghi Yassine
  */
 public enum QuestionType {

@@ -3,15 +3,12 @@
  */
 package tn.esprit.R2S.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
+/**
+ * @author Ouerghi Yassine
+ */
 @Entity
 public class EmailModel implements Serializable {
 
@@ -19,11 +16,11 @@ public class EmailModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @Basic
     private String name;
 
     @Column(length = 60000)
-
+    @Basic
     private String content;
 
     @ManyToOne(targetEntity = RecruitmentManager.class)

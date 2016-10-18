@@ -3,25 +3,22 @@
 //
 package tn.esprit.R2S.model;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * @author $author
+ */
+@Embeddable
 public class CandidateSkillPK implements Serializable {
-
-    private Long skill;
 
     private Long candidate;
 
+    private Long skill;
+
     public CandidateSkillPK() {
 
-    }
-
-    public Long getSkill() {
-        return this.skill;
-    }
-
-    public void setSkill(Long skill) {
-        this.skill = skill;
     }
 
     public Long getCandidate() {
@@ -32,11 +29,19 @@ public class CandidateSkillPK implements Serializable {
         this.candidate = candidate;
     }
 
+    public Long getSkill() {
+        return this.skill;
+    }
+
+    public void setSkill(Long skill) {
+        this.skill = skill;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.skill);
         hash = 59 * hash + Objects.hashCode(this.candidate);
+        hash = 59 * hash + Objects.hashCode(this.skill);
         return hash;
     }
 
@@ -49,10 +54,10 @@ public class CandidateSkillPK implements Serializable {
             return false;
         }
         final CandidateSkillPK other = (CandidateSkillPK) obj;
-        if (!Objects.equals(this.skill, other.skill)) {
+        if (!Objects.equals(this.candidate, other.candidate)) {
             return false;
         }
-        if (!Objects.equals(this.candidate, other.candidate)) {
+        if (!Objects.equals(this.skill, other.skill)) {
             return false;
         }
         return true;

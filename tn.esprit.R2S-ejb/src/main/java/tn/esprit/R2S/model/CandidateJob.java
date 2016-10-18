@@ -3,35 +3,44 @@
  */
 package tn.esprit.R2S.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import tn.esprit.R2S.util.enums.Progress;
 
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * @author Ouerghi Yassine
+ */
 @Entity
-@IdClass(CandidateJobPK.class)
 public class CandidateJob implements Serializable {
 
+    @EmbeddedId
+    private CandidateJobPK candidateJob;
+
+    @Basic
     @Enumerated
     private Progress progress;
 
+    @Basic
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Id
+    @MapsId("job")
     @ManyToOne(targetEntity = Job.class)
     private Job job;
 
-    @Id
+    @MapsId("candidate")
     @ManyToOne(targetEntity = Candidate.class)
     private Candidate candidate;
+
+    public CandidateJobPK getCandidateJob() {
+        return this.candidateJob;
+    }
+
+    public void setCandidateJob(CandidateJobPK candidateJob) {
+        this.candidateJob = candidateJob;
+    }
 
     public Progress getProgress() {
         return this.progress;

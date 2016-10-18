@@ -6,6 +6,9 @@ package tn.esprit.R2S.model;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * @author Ouerghi Yassine
+ */
 @Entity
 public class Answer implements Serializable {
 
@@ -13,10 +16,10 @@ public class Answer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @Basic
     private String answer;
 
-
+    @Basic
     private Boolean correct;
 
     @ManyToOne(targetEntity = Question.class)

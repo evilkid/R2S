@@ -3,27 +3,36 @@
  */
 package tn.esprit.R2S.model;
 
+import javax.persistence.*;
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
-import javax.persistence.OneToOne;
 
+/**
+ * @author Ouerghi Yassine
+ */
 @Entity
-@IdClass(CandidateSkillPK.class)
 public class CandidateSkill implements Serializable {
 
+    @EmbeddedId
+    private CandidateSkillPK candidateSkillPK;
 
+    @Basic
     private Integer level;
 
-    @Id
-    @OneToOne(targetEntity = Skill.class)
+    @MapsId("candidate")
+    @ManyToOne(targetEntity = Candidate.class)
+    private Candidate candidate;
+
+    @MapsId("skill")
+    @ManyToOne(targetEntity = Skill.class)
     private Skill skill;
 
-    @Id
-    @OneToOne(targetEntity = Candidate.class)
-    private Candidate candidate;
+    public CandidateSkillPK getCandidateSkillPK() {
+        return this.candidateSkillPK;
+    }
+
+    public void setCandidateSkillPK(CandidateSkillPK candidateSkillPK) {
+        this.candidateSkillPK = candidateSkillPK;
+    }
 
     public Integer getLevel() {
         return this.level;
@@ -33,20 +42,20 @@ public class CandidateSkill implements Serializable {
         this.level = level;
     }
 
-    public Skill getSkill() {
-        return this.skill;
-    }
-
-    public void setSkill(Skill skill) {
-        this.skill = skill;
-    }
-
     public Candidate getCandidate() {
         return this.candidate;
     }
 
     public void setCandidate(Candidate candidate) {
         this.candidate = candidate;
+    }
+
+    public Skill getSkill() {
+        return this.skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
 }

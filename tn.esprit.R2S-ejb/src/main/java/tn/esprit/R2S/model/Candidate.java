@@ -3,18 +3,17 @@
  */
 package tn.esprit.R2S.model;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import java.io.Serializable;
+import java.util.List;
 
+/**
+ * @author Ouerghi Yassine
+ */
 @Entity
 public class Candidate extends Users implements Serializable {
-
-    @OneToOne(targetEntity = CandidateSkill.class, mappedBy = "candidate")
-    private CandidateSkill candidateSkill;
 
     @ManyToOne(targetEntity = Employee.class)
     private Employee referee;
@@ -37,13 +36,8 @@ public class Candidate extends Users implements Serializable {
     @OneToMany(targetEntity = CandidateQuizModel.class, mappedBy = "candidate")
     private List<CandidateQuizModel> candidateQuizModels;
 
-    public CandidateSkill getCandidateSkill() {
-        return this.candidateSkill;
-    }
-
-    public void setCandidateSkill(CandidateSkill candidateSkill) {
-        this.candidateSkill = candidateSkill;
-    }
+    @OneToMany(targetEntity = CandidateSkill.class, mappedBy = "candidate")
+    private List<CandidateSkill> candidateSkills;
 
     public Employee getReferee() {
         return this.referee;
@@ -99,6 +93,14 @@ public class Candidate extends Users implements Serializable {
 
     public void setCandidateQuizModels(List<CandidateQuizModel> candidateQuizModels) {
         this.candidateQuizModels = candidateQuizModels;
+    }
+
+    public List<CandidateSkill> getCandidateSkills() {
+        return this.candidateSkills;
+    }
+
+    public void setCandidateSkills(List<CandidateSkill> candidateSkills) {
+        this.candidateSkills = candidateSkills;
     }
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="tn.esprit.R2S.model" v="2.6.2" thm="PMacColorScheme" persistenceUnitName="SMARTHR" sm="false" xs="false" id="_14760310720711" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" pkg="tn.esprit.R2S.model" v="2.6.2" thm="PMacColorScheme" persistenceUnitName="R2S_PU" sm="false" xs="false" id="_14760310720711" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
     <jpa:entity lbl-ref="_14760338814422" xre="false" compositePrimaryKeyClass="UsersPK" abs="true" class="Users" visibile="true" minimized="false" rootElement="_14760310720711" id="_1476033881413">
         <jpa:ts e="true"/>
         <jpa:hc e="true"/>
