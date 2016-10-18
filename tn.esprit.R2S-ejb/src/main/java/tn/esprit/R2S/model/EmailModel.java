@@ -16,11 +16,11 @@ public class EmailModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
     @Column(length = 60000)
-    @Basic
+
     private String content;
 
     @ManyToOne(targetEntity = RecruitmentManager.class)

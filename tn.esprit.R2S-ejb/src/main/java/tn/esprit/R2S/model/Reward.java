@@ -18,11 +18,11 @@ public class Reward implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     @Enumerated
     private Progress progress;
 
-    @Basic
+
     private String points;
 
     @ManyToOne(targetEntity = Job.class)

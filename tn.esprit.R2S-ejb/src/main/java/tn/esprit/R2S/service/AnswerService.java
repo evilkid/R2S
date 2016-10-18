@@ -1,15 +1,15 @@
 package tn.esprit.R2S.service;
 
+import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.model.Answer;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Named("answer")
-public class AnswerService extends AbstractService<Answer> {
+
+public class AnswerService extends AbstractService<Answer> implements IAnswerService {
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;
@@ -22,5 +22,4 @@ public class AnswerService extends AbstractService<Answer> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
 }

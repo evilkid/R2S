@@ -17,7 +17,7 @@ public class Skill implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
     @OneToMany(targetEntity = CandidateSkill.class, mappedBy = "skill")

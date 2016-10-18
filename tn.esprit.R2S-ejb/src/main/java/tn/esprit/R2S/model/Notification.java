@@ -18,11 +18,11 @@ public class Notification implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Basic
+
     private String message;
 
     @ManyToOne(targetEntity = RecruitmentManager.class)

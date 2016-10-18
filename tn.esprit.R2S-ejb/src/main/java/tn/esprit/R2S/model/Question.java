@@ -19,14 +19,14 @@ public class Question implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String question;
 
-    @Basic
+
     @Enumerated
     private QuestionType type;
 
-    @Basic
+
     private String score;
 
     @ManyToOne(targetEntity = CandidateAnswer.class)

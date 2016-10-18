@@ -17,7 +17,7 @@ public class Interview implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 

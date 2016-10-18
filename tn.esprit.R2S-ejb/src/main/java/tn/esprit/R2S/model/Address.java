@@ -3,7 +3,6 @@
  */
 package tn.esprit.R2S.model;
 
-import javax.persistence.Basic;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 
@@ -13,16 +12,16 @@ import java.io.Serializable;
 @Embeddable
 public class Address implements Serializable {
 
-    @Basic
+
     private String street;
 
-    @Basic
+
     private String city;
 
-    @Basic
+
     private String state;
 
-    @Basic
+
     private String country;
 
     public String getStreet() {

@@ -18,11 +18,11 @@ public class CandidateJob implements Serializable {
     @EmbeddedId
     private CandidateJobPK candidateJob;
 
-    @Basic
+
     @Enumerated
     private Progress progress;
 
-    @Basic
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 

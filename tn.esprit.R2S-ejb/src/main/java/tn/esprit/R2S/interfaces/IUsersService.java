@@ -1,0 +1,20 @@
+package tn.esprit.R2S.interfaces;
+
+import tn.esprit.R2S.model.Users;
+
+import java.util.List;
+
+/**
+ * Created by evilkid on 10/18/2016.
+ */
+public interface IUsersService {
+    void create(Users entity);
+
+    Users edit(Users entity);
+
+    void remove(Users entity);
+
+    Users find(Object id);
+
+    List<Users> findAll();
+}

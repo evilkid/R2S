@@ -16,10 +16,10 @@ public class Answer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String answer;
 
-    @Basic
+
     private Boolean correct;
 
     @ManyToOne(targetEntity = Question.class)

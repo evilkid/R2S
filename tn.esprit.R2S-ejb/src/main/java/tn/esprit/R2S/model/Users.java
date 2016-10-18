@@ -21,29 +21,29 @@ public abstract class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cin;
 
-    @Basic
+
     private String firstname;
 
-    @Basic
+
     private String lastname;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
-    @Basic
+
     private String username;
 
-    @Basic
+
     private String password;
 
-    @Basic
+
     private String email;
 
-    @Basic
+
     private String tel;
 
-    @Basic
+
     @Enumerated
     private Gender gender;
 

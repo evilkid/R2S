@@ -17,7 +17,7 @@ public class Category implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
     @ManyToMany(targetEntity = Question.class)

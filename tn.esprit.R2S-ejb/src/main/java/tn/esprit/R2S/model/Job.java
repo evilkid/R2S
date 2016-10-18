@@ -19,16 +19,16 @@ public class Job implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
-    @Basic
+
     private String description;
 
-    @Basic
+
     private Double salary;
 
-    @Basic
+
     @Enumerated
     private JobStatus status;
 

@@ -1,15 +1,15 @@
 package tn.esprit.R2S.service;
 
+import tn.esprit.R2S.interfaces.IExperienceService;
 import tn.esprit.R2S.model.Experience;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Named("experience")
-public class ExperienceService extends AbstractService<Experience> {
+
+public class ExperienceService extends AbstractService<Experience> implements IExperienceService {
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;

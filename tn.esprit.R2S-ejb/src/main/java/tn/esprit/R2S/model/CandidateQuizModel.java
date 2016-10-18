@@ -17,7 +17,7 @@ public class CandidateQuizModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date passingDate;
 

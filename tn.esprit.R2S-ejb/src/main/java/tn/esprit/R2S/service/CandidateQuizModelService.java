@@ -1,15 +1,15 @@
 package tn.esprit.R2S.service;
 
+import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
 import tn.esprit.R2S.model.CandidateQuizModel;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Named("candidateQuizModel")
-public class CandidateQuizModelService extends AbstractService<CandidateQuizModel> {
+
+public class CandidateQuizModelService extends AbstractService<CandidateQuizModel> implements ICandidateQuizModelService {
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;

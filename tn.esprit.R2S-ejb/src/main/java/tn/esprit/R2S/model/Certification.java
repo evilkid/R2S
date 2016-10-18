@@ -17,18 +17,18 @@ public class Certification implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateStart;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
 
-    @Basic
+
     private String url;
 
     @ManyToOne(targetEntity = Candidate.class)

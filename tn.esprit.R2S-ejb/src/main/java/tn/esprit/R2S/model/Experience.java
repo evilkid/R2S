@@ -17,24 +17,24 @@ public class Experience implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String jobTitle;
 
-    @Basic
+
     private String organization;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateStart;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
 
-    @Basic
+
     private String post;
 
-    @Basic
+
     private String description;
 
     @ManyToOne(targetEntity = Candidate.class)

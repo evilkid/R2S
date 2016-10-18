@@ -17,19 +17,19 @@ public class QuizModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String name;
 
-    @Basic
+
     private Integer duration;
 
-    @Basic
+
     private Integer questionsNumber;
 
-    @Basic
+
     private Integer answersNumber;
 
-    @Basic
+
     private Boolean penalty;
 
     @OneToMany(targetEntity = Job.class, mappedBy = "quizModel")

@@ -3,7 +3,6 @@
  */
 package tn.esprit.R2S.model;
 
-import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
@@ -15,7 +14,7 @@ import java.util.List;
 @Entity
 public class Employee extends Users implements Serializable {
 
-    @Basic
+
     private Integer credibility;
 
     @OneToMany(targetEntity = Candidate.class, mappedBy = "referee")

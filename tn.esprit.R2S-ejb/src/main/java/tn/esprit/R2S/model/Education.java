@@ -17,17 +17,17 @@ public class Education implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Basic
+
     private String degree;
 
-    @Basic
+
     private String institution;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateStart;
 
-    @Basic
+
     @Temporal(TemporalType.DATE)
     private Date dateEnd;
 

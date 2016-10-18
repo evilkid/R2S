@@ -6,7 +6,7 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface IAnswerFacade {
+public interface IAnswerService {
     void create(Answer entity);
 
     Answer edit(Answer entity);
@@ -17,5 +17,4 @@ public interface IAnswerFacade {
 
     List<Answer> findAll();
 
-    int count();
 }

@@ -1,15 +1,15 @@
 package tn.esprit.R2S.service;
 
+import tn.esprit.R2S.interfaces.IInterviewService;
 import tn.esprit.R2S.model.Interview;
 
 import javax.ejb.Stateless;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @Stateless
-@Named("interview")
-public class InterviewService extends AbstractService<Interview> {
+
+public class InterviewService extends AbstractService<Interview> implements IInterviewService {
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;
