@@ -1,5 +1,6 @@
 package tn.esprit.R2S.resource;
 
+import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.model.Answer;
 import tn.esprit.R2S.resource.util.HeaderUtil;
 import tn.esprit.R2S.service.AnswerService;
@@ -18,7 +19,7 @@ import java.util.Optional;
 public class AnswerResource {
 
     @EJB
-    private AnswerService answerService;
+    private IAnswerService answerService;
 
     @POST
     public Response createAnswer(Answer answer) throws URISyntaxException {
