@@ -3,10 +3,8 @@ package tn.esprit.R2S.resource;
 import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.model.Answer;
 import tn.esprit.R2S.resource.util.HeaderUtil;
-import tn.esprit.R2S.service.AnswerService;
 
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -15,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Path("/api/answer")
-@RequestScoped
 public class AnswerResource {
 
     @EJB
