@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import tn.esprit.R2S.util.enums.Gender;
 
 import javax.persistence.*;
@@ -15,34 +17,35 @@ import java.util.Date;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "user_role", discriminatorType = DiscriminatorType.STRING)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "role")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Employee.class, name = "Employee"),
+        @JsonSubTypes.Type(value = Candidate.class, name = "Candidate"),
+        @JsonSubTypes.Type(value = RecruitmentManager.class, name = "RecruitmentManager"),
+        @JsonSubTypes.Type(value = ChiefHumanResourcesOfficer.class, name = "ChiefHumanResourcesOfficer")
+})
 public abstract class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long cin;
 
-
     private String firstname;
 
-
     private String lastname;
-
 
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
-
     private String username;
-
 
     private String password;
 
-
     private String email;
 
-
     private String tel;
-
 
     @Enumerated
     private Gender gender;

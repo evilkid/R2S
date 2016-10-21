@@ -17,4 +17,6 @@ public interface IUsersService {
     Users find(Object id);
 
     List<Users> findAll();
+
+    Users login(String username, String password);
 }

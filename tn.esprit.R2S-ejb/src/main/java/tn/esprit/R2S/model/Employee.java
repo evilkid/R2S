@@ -5,6 +5,7 @@ package tn.esprit.R2S.model;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class Employee extends Users implements Serializable {
     private Integer credibility;
 
     @OneToMany(targetEntity = Candidate.class, mappedBy = "referee")
+
     private List<Candidate> referredCandidates;
 
     public Integer getCredibility() {
@@ -28,6 +30,7 @@ public class Employee extends Users implements Serializable {
         this.credibility = credibility;
     }
 
+    @XmlTransient
     public List<Candidate> getReferredCandidates() {
         return this.referredCandidates;
     }
