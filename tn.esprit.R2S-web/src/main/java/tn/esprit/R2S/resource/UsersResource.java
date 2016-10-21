@@ -53,6 +53,7 @@ public class UsersResource {
 
     @Path("/{cin}")
     @GET
+    @Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
     public Response getUsers(@PathParam("cin") Long cin) {
 
         Users users = usersService.find(cin);
@@ -70,15 +71,23 @@ public class UsersResource {
 
     @Path("/{username}/{password}")
     @GET
-    @Secured(Roles.ALL)
+    @Secured(Roles.ANONYMOUS)
     public Response login(@PathParam("username") String username, @PathParam("password") String password) {
         Users user = usersService.login(username, password);
+
+        System.out.println("User found, adding coockie");
 
         return Optional.ofNullable(user)
                 .map(u ->
                         Response.ok(u).cookie(
                                 new NewCookie("access_token",
-                                        TokenUtil.getToken(user, tokenService.getKey())))
+                                        TokenUtil.getToken(user, tokenService.getKey()),
+                                        "/tn.esprit.R2S-web/resources/api/",
+                                        "localhost",
+                                        "",
+                                        3600,
+                                        true,
+                                        true))
                                 .build()
                 )
                 .orElseThrow(NotFoundException::new);

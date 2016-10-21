@@ -5,7 +5,7 @@ public enum Roles {
     CANDIDATE("Candidate"),
     RECRUITMENT_MANAGER("RecruitmentManager"),
     CHIEF_HUMAN_RESOURCES_OFFICER("ChiefHumanResourcesOfficer"),
-    ALL("All");
+    ANONYMOUS("Anonymous");
 
     private final String role;
 
