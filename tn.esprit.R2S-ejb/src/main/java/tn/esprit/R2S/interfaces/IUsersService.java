@@ -19,4 +19,8 @@ public interface IUsersService {
     List<Users> findAll();
 
     Users login(String username, String password);
+
+    void disable(Long cin);
+
+    void enable(Long cin);
 }

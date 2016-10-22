@@ -1,63 +1,92 @@
 package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.IJobService;
+import tn.esprit.R2S.interfaces.INotificationService;
+import tn.esprit.R2S.interfaces.IRewardService;
 import tn.esprit.R2S.model.Job;
-import tn.esprit.R2S.resource.util.HeaderUtil;
+import tn.esprit.R2S.model.Notification;
+import tn.esprit.R2S.model.Reward;
+import tn.esprit.R2S.resource.util.Roles;
+import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
 @Path("/api/job")
+@Secured(Roles.RECRUITMENT_MANAGER)
 public class JobResource {
 
     @EJB
     private IJobService jobService;
 
-    @POST
-    public Response createJob(Job job) throws URISyntaxException {
+    @EJB
+    private IRewardService rewardService;
 
+    @EJB
+    private INotificationService notificationService;
+
+    @POST
+    public Response createJob(Job job) {
+        System.out.println("job " + job);
         jobService.create(job);
-        return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/job/" + job.getId())),
-                "job", job.getId().toString())
-                .entity(job).build();
+        return Response.status(Response.Status.CREATED).entity(job).build();
+    }
+
+    @Path("/{id}/reward")
+    @POST
+    public Response addReward(Reward reward, @PathParam("id") Long id) {
+        return Optional.ofNullable(jobService.find(id))
+                .map(job -> {
+                    reward.setJob(job);
+                    rewardService.create(reward);
+                    return Response.status(Response.Status.CREATED).entity(reward).build();
+                })
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @Path("/{id}/notify")
+    @POST
+    public Response addNotification(Notification notification, @PathParam("id") Long id) {
+        return Optional.ofNullable(jobService.find(id))
+                .map(job -> {
+                    notification.setJob(job);
+                    notificationService.create(notification);
+                    return Response.status(Response.Status.CREATED).entity(notification).build();
+                })
+                .orElseThrow(NotFoundException::new);
     }
 
     @PUT
-    public Response updateJob(Job job) throws URISyntaxException {
-
+    public Response updateJob(Job job) {
         jobService.edit(job);
-        return HeaderUtil.createEntityUpdateAlert(Response.ok(), "job", job.getId().toString())
-                .entity(job).build();
+        return Response.ok(job).build();
     }
 
     @GET
     public List<Job> getAllJobs() {
-
-        List<Job> jobs = jobService.findAll();
-        return jobs;
+        return jobService.findAll();
     }
 
     @Path("/{id}")
     @GET
     public Response getJob(@PathParam("id") Long id) {
 
-        Job job = jobService.find(id);
-        return Optional.ofNullable(job)
-                .map(result -> Response.status(Response.Status.OK).entity(job).build())
-                .orElse(Response.status(Response.Status.NOT_FOUND).build());
+        return Optional.ofNullable(jobService.find(id))
+                .map(job -> Response.ok(job).build())
+                .orElseThrow(NotFoundException::new);
     }
 
     @Path("/{id}")
     @DELETE
     public Response removeJob(@PathParam("id") Long id) {
-
-        jobService.remove(jobService.find(id));
-        return HeaderUtil.createEntityDeletionAlert(Response.ok(), "job", id.toString()).build();
+        return Optional.ofNullable(jobService.find(id))
+                .map(job -> {
+                    jobService.remove(job);
+                    return Response.ok().build();
+                }).orElseThrow(NotFoundException::new);
     }
 
 }

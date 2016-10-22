@@ -14,7 +14,7 @@ import java.util.List;
 public class CandidateAnswer implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne(targetEntity = CandidateQuizModel.class)

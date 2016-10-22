@@ -29,7 +29,7 @@ import java.util.Date;
 public abstract class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cin;
 
     private String firstname;
@@ -46,6 +46,9 @@ public abstract class Users implements Serializable {
     private String email;
 
     private String tel;
+
+    @Column(name = "active", columnDefinition = "tinyint(1) default 1")
+    private Boolean active;
 
     @Enumerated
     private Gender gender;
@@ -115,6 +118,14 @@ public abstract class Users implements Serializable {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     public Gender getGender() {

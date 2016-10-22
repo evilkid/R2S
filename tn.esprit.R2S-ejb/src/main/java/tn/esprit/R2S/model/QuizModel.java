@@ -14,7 +14,7 @@ import java.util.List;
 public class QuizModel implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
@@ -32,7 +32,7 @@ public class QuizModel implements Serializable {
 
     private Boolean penalty;
 
-    @OneToMany(targetEntity = Job.class, mappedBy = "quizModel")
+    @ManyToMany(targetEntity = Job.class, mappedBy = "quizModel")
     private List<Job> jobs;
 
     @ManyToMany(targetEntity = Question.class, mappedBy = "quizModels")

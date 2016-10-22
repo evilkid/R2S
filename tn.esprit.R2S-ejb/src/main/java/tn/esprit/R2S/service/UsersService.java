@@ -43,4 +43,18 @@ public class UsersService extends AbstractService<Users> implements IUsersServic
             return null;
         }
     }
+
+    @Override
+    public void disable(Long cin) {
+        Users user = find(cin);
+        user.setActive(false);
+        em.merge(user);
+    }
+
+    @Override
+    public void enable(Long cin) {
+        Users user = find(cin);
+        user.setActive(true);
+        em.merge(user);
+    }
 }

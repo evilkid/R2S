@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import tn.esprit.R2S.util.enums.JobStatus;
 
 import javax.persistence.*;
@@ -13,10 +15,12 @@ import java.util.List;
  * @author EvilKids
  */
 @Entity
+@JsonRootName("job")
+@JsonIgnoreProperties({"quizModel", "rewards", "candidates", "skills"})
 public class Job implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
@@ -32,8 +36,8 @@ public class Job implements Serializable {
     @Enumerated
     private JobStatus status;
 
-    @ManyToOne(targetEntity = QuizModel.class)
-    private QuizModel quizModel;
+    @ManyToMany(targetEntity = QuizModel.class)
+    private List<QuizModel> quizModel;
 
     @OneToMany(targetEntity = Reward.class, mappedBy = "job")
     private List<Reward> rewards;
@@ -84,11 +88,11 @@ public class Job implements Serializable {
         this.status = status;
     }
 
-    public QuizModel getQuizModel() {
+    public List<QuizModel> getQuizModel() {
         return this.quizModel;
     }
 
-    public void setQuizModel(QuizModel quizModel) {
+    public void setQuizModel(List<QuizModel> quizModel) {
         this.quizModel = quizModel;
     }
 

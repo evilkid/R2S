@@ -31,8 +31,7 @@ public class AnswerResource {
     public Response updateAnswer(Answer answer) throws URISyntaxException {
 
         answerService.edit(answer);
-        return HeaderUtil.createEntityUpdateAlert(Response.ok(), "answer", answer.getId().toString())
-                .entity(answer).build();
+        return Response.ok(answer).build();
     }
     @GET
     public List<Answer> getAllAnswers() {
