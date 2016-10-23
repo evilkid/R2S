@@ -2,7 +2,6 @@ package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.ISkillService;
 import tn.esprit.R2S.model.Skill;
-import tn.esprit.R2S.resource.util.HeaderUtil;
 import tn.esprit.R2S.resource.util.Roles;
 import tn.esprit.R2S.resource.util.Secured;
 
@@ -25,41 +24,41 @@ public class SkillResource {
     public Response createSkill(Skill skill) throws URISyntaxException {
 
         skillService.create(skill);
-        return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/skill/" + skill.getId())),
-                "skill", skill.getId().toString())
-                .entity(skill).build();
+        return Response.created(new URI("/resources/api/skill/" + skill.getId())).entity(skill).build();
     }
 
     @PUT
     public Response updateSkill(Skill skill) throws URISyntaxException {
 
         skillService.edit(skill);
-        return HeaderUtil.createEntityUpdateAlert(Response.ok(), "skill", skill.getId().toString())
-                .entity(skill).build();
+
+        return Response.ok(skill).build();
     }
+
     @GET
     public List<Skill> getAllSkills() {
 
-        List<Skill> skills = skillService.findAll();
-        return skills;
+        return skillService.findAll();
     }
 
     @Path("/{id}")
     @GET
     public Response getSkill(@PathParam("id") Long id) {
 
-        Skill skill = skillService.find(id);
-        return Optional.ofNullable(skill)
-                .map(result -> Response.status(Response.Status.OK).entity(skill).build())
-                .orElse(Response.status(Response.Status.NOT_FOUND).build());
+        return Optional.ofNullable(skillService.find(id))
+                .map(skill -> Response.ok(skill).build())
+                .orElseThrow(NotFoundException::new);
     }
 
     @DELETE
     @Path("/{id}")
     public Response removeSkill(@PathParam("id") Long id) {
 
-        skillService.remove(skillService.find(id));
-        return HeaderUtil.createEntityDeletionAlert(Response.ok(), "skill", id.toString()).build();
+        return Optional.ofNullable(skillService.find(id))
+                .map(skill -> {
+                    skillService.remove(skill);
+                    return Response.ok().build();
+                }).orElseThrow(NotFoundException::new);
     }
 
 }

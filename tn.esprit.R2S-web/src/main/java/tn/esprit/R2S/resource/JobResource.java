@@ -12,6 +12,8 @@ import tn.esprit.R2S.resource.util.Secured;
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,10 +31,10 @@ public class JobResource {
     private INotificationService notificationService;
 
     @POST
-    public Response createJob(Job job) {
+    public Response createJob(Job job) throws URISyntaxException {
         System.out.println("job " + job);
         jobService.create(job);
-        return Response.status(Response.Status.CREATED).entity(job).build();
+        return Response.created(new URI("/resources/api/job/" + job.getId())).entity(job).build();
     }
 
     @Path("/{id}/reward")

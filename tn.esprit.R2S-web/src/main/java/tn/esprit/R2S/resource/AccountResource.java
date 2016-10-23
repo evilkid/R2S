@@ -58,7 +58,7 @@ public class AccountResource {
                 "/tn.esprit.R2S-web/resources/api/",
                 "localhost",
                 "",
-                0, //max age = 0 => delete cookie
+                3600,
                 true,
                 true)).build();
     }

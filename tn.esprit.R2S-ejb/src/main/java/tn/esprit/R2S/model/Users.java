@@ -29,7 +29,6 @@ import java.util.Date;
 public abstract class Users implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cin;
 
     private String firstname;

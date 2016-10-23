@@ -13,6 +13,8 @@ import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,9 +29,10 @@ public class UsersResource {
     private IUsersService usersService;
 
     @POST
-    public Response createUser(Users user) {
+    public Response createUser(Users user) throws URISyntaxException {
         usersService.create(user);
-        return Response.status(Response.Status.CREATED).entity(user).build();
+
+        return Response.created(new URI("/resources/api/users/" + user.getCin())).entity(user).build();
     }
 
     @PUT
@@ -56,11 +59,12 @@ public class UsersResource {
     @DELETE
     public Response removeUsers(@PathParam("cin") Long cin) {
 
-        return Optional.ofNullable(usersService.find(cin))
+        /*return Optional.ofNullable(usersService.find(cin))
                 .map(user -> {
                     usersService.remove(user);
                     return Response.ok().build();
-                }).orElseThrow(NotFoundException::new);
+                }).orElseThrow(NotFoundException::new);*/
+        return disable(cin);
     }
 
     @Path("/{cin}/disable")

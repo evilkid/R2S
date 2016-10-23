@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
@@ -12,6 +14,7 @@ import java.util.List;
  * @author EvilKids
  */
 @Entity
+@JsonIgnoreProperties({"emailModels", "notifications", "interviews"})
 public class RecruitmentManager extends Users implements Serializable {
 
     @OneToMany(targetEntity = EmailModel.class, mappedBy = "recruitmentManager")
