@@ -3,6 +3,8 @@ package tn.esprit.R2S.resource;
 import tn.esprit.R2S.interfaces.ISkillService;
 import tn.esprit.R2S.model.Skill;
 import tn.esprit.R2S.resource.util.HeaderUtil;
+import tn.esprit.R2S.resource.util.Roles;
+import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -13,9 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Path("/api/skill")
-
+@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
 public class SkillResource {
-
 
     @EJB
     private ISkillService skillService;
@@ -52,7 +53,9 @@ public class SkillResource {
                 .map(result -> Response.status(Response.Status.OK).entity(skill).build())
                 .orElse(Response.status(Response.Status.NOT_FOUND).build());
     }
+
     @DELETE
+    @Path("/{id}")
     public Response removeSkill(@PathParam("id") Long id) {
 
         skillService.remove(skillService.find(id));

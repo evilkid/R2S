@@ -23,7 +23,7 @@ import java.io.IOException;
 public class AuthenticationFilter implements ContainerRequestFilter {
 
     @EJB
-    ITokenService tokenService;
+    private ITokenService tokenService;
     @Context
     private ResourceInfo resourceInfo;
 

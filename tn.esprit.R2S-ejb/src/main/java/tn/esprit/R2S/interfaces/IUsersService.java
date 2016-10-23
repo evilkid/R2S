@@ -1,5 +1,6 @@
 package tn.esprit.R2S.interfaces;
 
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Users;
 
 import java.util.List;
@@ -23,4 +24,6 @@ public interface IUsersService {
     void disable(Long cin);
 
     void enable(Long cin);
+
+    List<Candidate> getReferred(Long cin);
 }

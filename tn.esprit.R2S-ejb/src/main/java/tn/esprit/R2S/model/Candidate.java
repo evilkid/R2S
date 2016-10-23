@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,6 +15,7 @@ import java.util.List;
  * @author EvilKids
  */
 @Entity
+@JsonIgnoreProperties({"certifications", "educations", "experiences", "jobs", "interviews", "candidateQuizModels", "candidateSkills"})
 public class Candidate extends Users implements Serializable {
 
     @ManyToOne(targetEntity = Employee.class)

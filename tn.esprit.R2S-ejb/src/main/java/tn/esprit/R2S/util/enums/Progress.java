@@ -9,5 +9,5 @@ package tn.esprit.R2S.util.enums;
  * @author Ouerghi Yassine
  */
 public enum Progress {
-    STARTED;
+    STARTED, FAILED, PASSED_QUIZ, REFUSED, PASSED;
 }

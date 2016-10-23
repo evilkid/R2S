@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * @author EvilKids
  */
 @Entity
+@JsonIgnoreProperties({"candidateSkills", "jobs"})
 public class Skill implements Serializable {
 
     @Id

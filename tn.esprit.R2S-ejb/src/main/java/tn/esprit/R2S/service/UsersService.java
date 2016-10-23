@@ -1,6 +1,8 @@
 package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.IUsersService;
+import tn.esprit.R2S.model.Candidate;
+import tn.esprit.R2S.model.Employee;
 import tn.esprit.R2S.model.Users;
 
 import javax.ejb.Stateless;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.List;
 
 @Stateless
 
@@ -56,5 +59,14 @@ public class UsersService extends AbstractService<Users> implements IUsersServic
         Users user = find(cin);
         user.setActive(true);
         em.merge(user);
+    }
+
+    @Override
+    public List<Candidate> getReferred(Long cin) {
+        Employee employee = em.find(Employee.class, cin);
+        //init candidates collection
+        employee.getReferredCandidates().size();
+
+        return employee.getReferredCandidates();
     }
 }

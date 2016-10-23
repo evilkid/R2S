@@ -1,9 +1,10 @@
 package tn.esprit.R2S.resource.util;
 
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import tn.esprit.R2S.model.*;
 
+import javax.ws.rs.NotAuthorizedException;
+import javax.ws.rs.core.Cookie;
 import java.security.Key;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ public class TokenUtil {
     public static String getToken(Users user, Key key) {
         Map<String, Object> claims = new HashMap<String, Object>();
 
+        claims.put("cin", user.getCin().toString());
 
         if (user instanceof Employee) {
             claims.put("role", Roles.EMPLOYEE.toString());
@@ -36,4 +38,17 @@ public class TokenUtil {
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
     }
+
+    public static Jws<Claims> getClaims(Cookie cookie, Key key) {
+        if (cookie == null) {
+            throw new NotAuthorizedException("Not token found");
+        }
+
+        try {
+            return Jwts.parser().setSigningKey(key).parseClaimsJws(cookie.getValue());
+        } catch (JwtException je) {
+            throw new NotAuthorizedException("Token error");
+        }
+    }
+
 }
