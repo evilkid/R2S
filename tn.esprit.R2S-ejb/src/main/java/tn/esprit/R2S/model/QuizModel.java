@@ -35,7 +35,7 @@ public class QuizModel implements Serializable {
     @ManyToMany(targetEntity = Job.class, mappedBy = "quizModel")
     private List<Job> jobs;
 
-    @ManyToMany(targetEntity = Question.class, mappedBy = "quizModels")
+    @ManyToMany(targetEntity = Question.class, mappedBy = "quizModels", fetch = FetchType.EAGER)
     private List<Question> questions;
 
     @ManyToMany(targetEntity = Answer.class)

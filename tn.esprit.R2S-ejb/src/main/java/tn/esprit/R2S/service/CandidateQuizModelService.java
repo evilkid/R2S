@@ -1,11 +1,19 @@
 package tn.esprit.R2S.service;
 
+import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
+import tn.esprit.R2S.interfaces.IQuestionService;
+import tn.esprit.R2S.model.Answer;
 import tn.esprit.R2S.model.CandidateQuizModel;
+import tn.esprit.R2S.model.Question;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Stateless
 
@@ -13,6 +21,8 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;
+    @EJB
+    IAnswerService answerService;
 
     public CandidateQuizModelService() {
         super(CandidateQuizModel.class);
@@ -23,4 +33,48 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
         return em;
     }
 
+    @Override
+    public double calculateScore(CandidateQuizModel candidateQuizModel) {
+        List<Answer> candidateAnswers = candidateQuizModel.getCandidateAnswer().getAnswers();
+        List<Question> quizModelQuestions = candidateQuizModel.getQuizModel().getQuestions();
+        double totalScore = quizModelQuestions.stream().distinct().mapToDouble(q -> q.getScore().doubleValue()).sum();
+        final double[] totalNote = {0};
+        Map<Question, List<Answer>> questionListMap = candidateAnswers.stream()
+                .collect(Collectors.groupingBy(Answer::getQuestion));
+        questionListMap.forEach((question, answerList) -> {
+            double questionNote = calculateQuestionNote(question, answerList,
+                                            candidateQuizModel.getQuizModel().isPenalty(), totalScore);
+            totalNote[0] += questionNote;
+        });
+        return totalNote[0];
+    }
+
+    @Override
+    public double calculateSingleQuestionNote(CandidateQuizModel candidateQuizModel, Question question) {
+        List<Answer> candidateAnswers = candidateQuizModel.getCandidateAnswer().getAnswers();
+        List<Question> quizModelQuestions = candidateQuizModel.getQuizModel().getQuestions();
+        double totalScore = quizModelQuestions.stream().distinct().mapToDouble(q -> q.getScore().doubleValue()).sum();
+        List<Answer> answerList = candidateAnswers.stream()
+                        .filter(answer -> answer.getQuestion().equals(question)).collect(Collectors.toList());
+        double questionNote = calculateQuestionNote(question, answerList,
+                                            candidateQuizModel.getQuizModel().isPenalty(), totalScore);
+        return questionNote;
+    }
+
+    public double calculateQuestionNote(Question question, List<Answer> answers, boolean penalty, double totalScore){
+        double numberOfGoodAnswers = answerService.findCorrectAnswers(question.getId()).size();
+        final double[] questionNote = {0};
+        answers.forEach(answer -> {
+            if(answer.isCorrect()){
+                questionNote[0] += 1 / numberOfGoodAnswers;
+            }else{
+                questionNote[0] -= 1 / numberOfGoodAnswers;
+            }
+        });
+        if(!penalty && questionNote[0] < 0){
+            questionNote[0] = 0;
+        }
+        questionNote[0] *= 100 * question.getScore() / totalScore;
+        return questionNote[0];
+    }
 }

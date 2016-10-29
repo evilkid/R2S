@@ -27,7 +27,7 @@ public class Question implements Serializable {
     private QuestionType type;
 
 
-    private String score;
+    private Double score;
 
     @ManyToOne(targetEntity = CandidateAnswer.class)
     private CandidateAnswer candidateAnswer;
@@ -65,11 +65,11 @@ public class Question implements Serializable {
         this.type = type;
     }
 
-    public String getScore() {
+    public Double getScore() {
         return this.score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Double score) {
         this.score = score;
     }
 
@@ -105,4 +105,19 @@ public class Question implements Serializable {
         this.categories = categories;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Question)) return false;
+
+        Question question = (Question) o;
+
+        return id.equals(question.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

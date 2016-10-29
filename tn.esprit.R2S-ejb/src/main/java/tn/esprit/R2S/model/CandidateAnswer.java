@@ -5,7 +5,10 @@ package tn.esprit.R2S.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author EvilKids
@@ -23,8 +26,8 @@ public class CandidateAnswer implements Serializable {
     @OneToMany(targetEntity = Question.class, mappedBy = "candidateAnswer")
     private List<Question> questions;
 
-    @OneToMany(targetEntity = Answer.class, mappedBy = "candidateAnswer")
-    private List<Answer> answers;
+    @OneToMany(targetEntity = Answer.class, mappedBy = "candidateAnswer", fetch = FetchType.EAGER)
+    private Set<Answer> answers;
 
     public Long getId() {
         return this.id;
@@ -51,11 +54,11 @@ public class CandidateAnswer implements Serializable {
     }
 
     public List<Answer> getAnswers() {
-        return this.answers;
+        return new ArrayList<Answer>(this.answers);
     }
 
     public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
+        this.answers = new HashSet<Answer>(answers);
     }
 
 }

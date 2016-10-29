@@ -44,6 +44,7 @@ public class QuizModelResource {
     }
     @Path("/{id}")
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getQuizModel(@PathParam("id") Long id) {
 
         QuizModel quizModel = quizModelService.find(id);

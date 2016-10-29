@@ -6,6 +6,7 @@ import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;

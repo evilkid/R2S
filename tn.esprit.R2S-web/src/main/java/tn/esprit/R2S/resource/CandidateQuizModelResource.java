@@ -1,7 +1,9 @@
 package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
+import tn.esprit.R2S.interfaces.IQuestionService;
 import tn.esprit.R2S.model.CandidateQuizModel;
+import tn.esprit.R2S.model.Question;
 import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
@@ -19,6 +21,8 @@ public class CandidateQuizModelResource {
 
     @EJB
     private ICandidateQuizModelService candidateQuizModelService;
+    @EJB
+    private IQuestionService questionService;
 
     @POST
     public Response createCandidateQuizModel(CandidateQuizModel candidateQuizModel) throws URISyntaxException {
@@ -37,7 +41,7 @@ public class CandidateQuizModelResource {
                 .entity(candidateQuizModel).build();
     }
 
-
+    @GET
     public List<CandidateQuizModel> getAllCandidateQuizModels() {
 
         List<CandidateQuizModel> candidateQuizModels = candidateQuizModelService.findAll();
@@ -62,6 +66,22 @@ public class CandidateQuizModelResource {
 
         candidateQuizModelService.remove(candidateQuizModelService.find(id));
         return HeaderUtil.createEntityDeletionAlert(Response.ok(), "candidateQuizModel", id.toString()).build();
+    }
+
+    @Path("/score/{id}")
+    @GET
+    public double calculateScore(@PathParam("id") Long id) {
+        CandidateQuizModel candidateQuizModel = candidateQuizModelService.find(id);
+        return candidateQuizModelService.calculateScore(candidateQuizModel);
+    }
+
+    @Path("/score/{idCandidateQuiz}/{idQuestion}")
+    @GET
+    public double getSingleQuestionNote(@PathParam("idCandidateQuiz") Long idCandidateQuizModel,
+                                        @PathParam("idQuestion") Long idQuestion) {
+        CandidateQuizModel candidateQuizModel = candidateQuizModelService.find(idCandidateQuizModel);
+        Question question = questionService.find(idQuestion);
+        return candidateQuizModelService.calculateSingleQuestionNote(candidateQuizModel, question);
     }
 
 }
