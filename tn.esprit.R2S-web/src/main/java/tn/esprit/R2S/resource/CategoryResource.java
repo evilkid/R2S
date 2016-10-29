@@ -6,6 +6,7 @@ import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,6 +22,8 @@ public class CategoryResource {
     private ICategoryService categoryService;
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createCategory(Category category) throws URISyntaxException {
 
         categoryService.create(category);
@@ -40,6 +43,7 @@ public class CategoryResource {
 
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Category> getAllCategories() {
 
         List<Category> categories = categoryService.findAll();
@@ -48,6 +52,7 @@ public class CategoryResource {
 
     @Path("/{id}")
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getCategory(@PathParam("id") Long id) {
 
         Category category = categoryService.find(id);

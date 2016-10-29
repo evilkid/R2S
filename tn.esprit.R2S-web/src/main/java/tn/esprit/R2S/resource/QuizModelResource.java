@@ -6,6 +6,7 @@ import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -57,6 +58,18 @@ public class QuizModelResource {
 
         quizModelService.remove(quizModelService.find(id));
         return HeaderUtil.createEntityDeletionAlert(Response.ok(), "quizModel", id.toString()).build();
+    }
+
+    @Path("/random")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createRandomQuizModel(QuizModel quizModel) throws URISyntaxException {
+
+        quizModelService.create(quizModel);
+        return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/quiz-model/" + quizModel.getId())),
+                "quizModel", quizModel.getId().toString())
+                .entity(quizModel).build();
     }
 
 }
