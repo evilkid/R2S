@@ -17,4 +17,8 @@ public interface IAnswerService {
 
     List<Answer> findAll();
 
+    List<Answer> findCorrectAnswers(Long questionId);
+
+    List<Answer> findWrongAnswers(Long questionId);
+
 }

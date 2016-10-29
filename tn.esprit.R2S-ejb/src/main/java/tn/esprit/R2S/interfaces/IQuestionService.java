@@ -17,4 +17,6 @@ public interface IQuestionService {
     Question find(Object id);
 
     List<Question> findAll();
+
+    List<Question> findRandomQuestions(int numberOfQuestions);
 }

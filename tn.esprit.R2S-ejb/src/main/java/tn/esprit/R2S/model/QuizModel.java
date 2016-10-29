@@ -38,6 +38,9 @@ public class QuizModel implements Serializable {
     @ManyToMany(targetEntity = Question.class, mappedBy = "quizModels")
     private List<Question> questions;
 
+    @ManyToMany(targetEntity = Answer.class)
+    private List<Answer> answers;
+
     public Long getId() {
         return this.id;
     }
@@ -101,5 +104,9 @@ public class QuizModel implements Serializable {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
+
+    public List<Answer> getAnswers() { return answers; }
+
+    public void setAnswers(List<Answer> answers) { this.answers = answers; }
 
 }

@@ -6,6 +6,8 @@ import tn.esprit.R2S.model.Question;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 @Stateless
 
@@ -23,4 +25,11 @@ public class QuestionService extends AbstractService<Question> implements IQuest
         return em;
     }
 
+    @Override
+    public List<Question> findRandomQuestions(int numberOfQuestions) {
+        String query = "SELECT q FROM Question q ORDER BY RAND()";
+        Query q = em.createQuery(query);
+        q.setMaxResults(numberOfQuestions);
+        return q.getResultList();
+    }
 }

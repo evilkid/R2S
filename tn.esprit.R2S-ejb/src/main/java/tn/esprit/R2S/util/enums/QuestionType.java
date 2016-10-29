@@ -9,7 +9,7 @@ package tn.esprit.R2S.util.enums;
  * @author Ouerghi Yassine
  */
 public enum QuestionType {
-    TEXT_FIELD("text field"), CHECKBOX("checkbox"), RADIOBOX("radiobox");
+    CHECKBOX("checkbox"), RADIOBOX("radiobox");
 
     private final String value;
 

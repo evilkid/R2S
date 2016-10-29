@@ -5,6 +5,7 @@ package tn.esprit.R2S.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author EvilKids
@@ -27,6 +28,9 @@ public class Answer implements Serializable {
 
     @ManyToOne(targetEntity = CandidateAnswer.class)
     private CandidateAnswer candidateAnswer;
+
+    @ManyToMany(targetEntity = QuizModel.class, mappedBy = "answers")
+    private List<QuizModel> quizModels;
 
     public Long getId() {
         return this.id;
@@ -68,4 +72,11 @@ public class Answer implements Serializable {
         this.candidateAnswer = candidateAnswer;
     }
 
+    public List<QuizModel> getQuizModels() {
+        return quizModels;
+    }
+
+    public void setQuizModels(List<QuizModel> quizModels) {
+        this.quizModels = quizModels;
+    }
 }
