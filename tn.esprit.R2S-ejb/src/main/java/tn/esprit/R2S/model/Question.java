@@ -38,8 +38,8 @@ public class Question implements Serializable {
     @ManyToMany(targetEntity = QuizModel.class)
     private List<QuizModel> quizModels;
 
-    @ManyToMany(targetEntity = Category.class, mappedBy = "questions")
-    private List<Category> categories;
+    @ManyToOne(targetEntity = Category.class)
+    private Category category;
 
     public Long getId() {
         return this.id;
@@ -97,12 +97,12 @@ public class Question implements Serializable {
         this.quizModels = quizModels;
     }
 
-    public List<Category> getCategories() {
-        return this.categories;
+    public Category getCategory() {
+        return this.category;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

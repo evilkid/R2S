@@ -18,5 +18,5 @@ public interface IQuizModelService {
 
     List<QuizModel> findAll();
 
-    void addRandomQuizModel(QuizModel quizModel);
+    void addRandomQuizModel(QuizModel quizModel, Long id);
 }

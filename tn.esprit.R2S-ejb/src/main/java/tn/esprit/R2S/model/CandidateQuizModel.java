@@ -3,7 +3,10 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -49,6 +52,8 @@ public class CandidateQuizModel implements Serializable {
         this.passingDate = passingDate;
     }
 
+    @JsonIgnore
+    @XmlTransient
     public CandidateAnswer getCandidateAnswer() {
         return this.candidateAnswer;
     }

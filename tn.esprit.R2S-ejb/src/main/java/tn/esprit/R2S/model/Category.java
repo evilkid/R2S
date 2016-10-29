@@ -20,7 +20,7 @@ public class Category implements Serializable {
 
     private String name;
 
-    @ManyToMany(targetEntity = Question.class)
+    @OneToMany(targetEntity = Question.class, mappedBy = "category")
     private List<Question> questions;
 
     public Long getId() {

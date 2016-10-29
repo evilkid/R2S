@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -59,6 +60,15 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
         double questionNote = calculateQuestionNote(question, answerList,
                                             candidateQuizModel.getQuizModel().isPenalty(), totalScore);
         return questionNote;
+    }
+
+    @Override
+    public Map<Double, CandidateQuizModel> getHistorique() {
+        Map<Double, CandidateQuizModel> scoreQuizMap = new LinkedHashMap();
+        List<CandidateQuizModel> candidateQuizModelList = findAll();
+        candidateQuizModelList.sort((c1, c2) -> Double.compare(calculateScore(c1), calculateScore(c2)));
+        candidateQuizModelList.forEach(candidateQuizModel -> scoreQuizMap.put(calculateScore(candidateQuizModel), candidateQuizModel));
+        return scoreQuizMap;
     }
 
     public double calculateQuestionNote(Question question, List<Answer> answers, boolean penalty, double totalScore){

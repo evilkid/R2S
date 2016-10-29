@@ -38,9 +38,15 @@ public class QuizModelService extends AbstractService<QuizModel> implements IQui
     }
 
     @Override
-    public void addRandomQuizModel(QuizModel quizModel) {
+    public void addRandomQuizModel(QuizModel quizModel, Long id) {
         Random random = new Random();
-        List<Question> questions = questionService.findRandomQuestions(quizModel.getQuestionsNumber());
+        List<Question> questions;
+        if(id != null){
+            questions = questionService.findRandomQuestionsByCategory(quizModel.getQuestionsNumber(), id);
+        }
+        else{
+            questions = questionService.findRandomQuestions(quizModel.getQuestionsNumber());
+        }
         List<Answer> keepedAnswer = new ArrayList();
         questions.stream().forEach(question -> {
             int randomInt = random.nextInt(quizModel.getAnswersNumber()) + 1;

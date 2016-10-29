@@ -19,4 +19,6 @@ public interface IQuestionService {
     List<Question> findAll();
 
     List<Question> findRandomQuestions(int numberOfQuestions);
+
+    List<Question> findRandomQuestionsByCategory(int numberOfQuestions, Long categoryId);
 }

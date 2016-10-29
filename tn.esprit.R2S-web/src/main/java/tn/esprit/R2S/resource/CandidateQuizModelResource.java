@@ -8,10 +8,12 @@ import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Path("/api/candidate-quiz-model")
@@ -82,6 +84,13 @@ public class CandidateQuizModelResource {
         CandidateQuizModel candidateQuizModel = candidateQuizModelService.find(idCandidateQuizModel);
         Question question = questionService.find(idQuestion);
         return candidateQuizModelService.calculateSingleQuestionNote(candidateQuizModel, question);
+    }
+
+    @Path("/historique")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Map<Double, CandidateQuizModel> getHistorique(){
+        return candidateQuizModelService.getHistorique();
     }
 
 }

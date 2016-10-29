@@ -1,6 +1,7 @@
 package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.IQuestionService;
+import tn.esprit.R2S.model.Category;
 import tn.esprit.R2S.model.Question;
 
 import javax.ejb.Stateless;
@@ -29,6 +30,15 @@ public class QuestionService extends AbstractService<Question> implements IQuest
     public List<Question> findRandomQuestions(int numberOfQuestions) {
         String query = "SELECT q FROM Question q ORDER BY RAND()";
         Query q = em.createQuery(query);
+        q.setMaxResults(numberOfQuestions);
+        return q.getResultList();
+    }
+
+    @Override
+    public List<Question> findRandomQuestionsByCategory(int numberOfQuestions, Long categoryId) {
+        String query = "SELECT q FROM Question q WHERE q.category.id = :id ORDER BY RAND()";
+        Query q = em.createQuery(query);
+        q.setParameter("id", categoryId);
         q.setMaxResults(numberOfQuestions);
         return q.getResultList();
     }

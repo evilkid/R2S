@@ -5,6 +5,7 @@ import tn.esprit.R2S.model.Question;
 
 import javax.ejb.Local;
 import java.util.List;
+import java.util.Map;
 
 @Local
 public interface ICandidateQuizModelService {
@@ -21,4 +22,6 @@ public interface ICandidateQuizModelService {
     double calculateScore(CandidateQuizModel candidateQuizModel);
 
     double calculateSingleQuestionNote(CandidateQuizModel candidateQuizModel, Question question);
+
+    Map<Double, CandidateQuizModel> getHistorique();
 }

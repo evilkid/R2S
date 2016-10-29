@@ -65,9 +65,8 @@ public class QuizModelResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createRandomQuizModel(QuizModel quizModel) throws URISyntaxException {
-
-        quizModelService.create(quizModel);
+    public Response createRandomQuizModel(QuizModel quizModel, Long categoryId) throws URISyntaxException {
+        quizModelService.addRandomQuizModel(quizModel, categoryId);
         return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/quiz-model/" + quizModel.getId())),
                 "quizModel", quizModel.getId().toString())
                 .entity(quizModel).build();
