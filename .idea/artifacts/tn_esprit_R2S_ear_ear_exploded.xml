@@ -24,6 +24,7 @@
       <element id="directory" name="lib">
         <element id="file-copy" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.21/slf4j-api-1.7.21.jar" output-file-name="slf4j-api.jar" />
         <element id="file-copy" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar" output-file-name="commons-lang3.jar" />
+        <element id="file-copy" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.10/commons-codec-1.10.jar" output-file-name="commons-codec.jar" />
         <element id="file-copy" path="$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt/0.7.0/jjwt-0.7.0.jar" output-file-name="jjwt.jar" />
         <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.8.2/jackson-databind-2.8.2.jar" output-file-name="jackson-databind.jar" />
         <element id="file-copy" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.8.0/jackson-annotations-2.8.0.jar" output-file-name="jackson-annotations.jar" />

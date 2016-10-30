@@ -1,13 +1,7 @@
 package tn.esprit.R2S.resource;
 
-import tn.esprit.R2S.interfaces.IJobFieldService;
-import tn.esprit.R2S.interfaces.IJobService;
-import tn.esprit.R2S.interfaces.INotificationService;
-import tn.esprit.R2S.interfaces.IRewardService;
-import tn.esprit.R2S.model.Job;
-import tn.esprit.R2S.model.JobField;
-import tn.esprit.R2S.model.Notification;
-import tn.esprit.R2S.model.Reward;
+import tn.esprit.R2S.interfaces.*;
+import tn.esprit.R2S.model.*;
 import tn.esprit.R2S.resource.util.Roles;
 import tn.esprit.R2S.resource.util.Secured;
 
@@ -34,6 +28,12 @@ public class JobResource {
 
     @EJB
     private IJobFieldService jobFieldService;
+
+    @EJB
+    private IEmployeeService employeeSerivce;
+
+    @EJB
+    private IReferHashService referHashService;
 
     @POST
     public Response createJob(Job job) throws URISyntaxException {
@@ -101,4 +101,26 @@ public class JobResource {
     public List<JobField> getJobField() {
         return jobFieldService.findAll();
     }
+
+    @GET
+    @Path("generate-link/{job-id}/{employee-id}")
+    public Response generateLink(@PathParam("job-id") Long jobId, @PathParam("employee-id") Long employeeId) {
+
+        Job job = jobService.find(jobId);
+        if (job == null) {
+            throw new NotFoundException("Job not found");
+        }
+
+        Employee employee = employeeSerivce.find(employeeId);
+        if (employee == null) {
+            throw new NotFoundException("Employee not found");
+        }
+
+        ReferHash referHash = referHashService.generateHash(job, employee);
+
+        System.out.println(referHash);
+
+        return Response.ok(referHash).build();
+    }
+
 }
