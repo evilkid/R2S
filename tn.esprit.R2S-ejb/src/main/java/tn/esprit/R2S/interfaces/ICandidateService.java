@@ -16,4 +16,6 @@ public interface ICandidateService {
     Candidate find(Object id);
 
     List<Candidate> findAll();
+
+    List<Candidate> findBySkillId(int skillId);
 }
