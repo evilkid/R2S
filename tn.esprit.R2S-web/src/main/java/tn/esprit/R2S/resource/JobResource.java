@@ -1,9 +1,11 @@
 package tn.esprit.R2S.resource;
 
+import tn.esprit.R2S.interfaces.IJobFieldService;
 import tn.esprit.R2S.interfaces.IJobService;
 import tn.esprit.R2S.interfaces.INotificationService;
 import tn.esprit.R2S.interfaces.IRewardService;
 import tn.esprit.R2S.model.Job;
+import tn.esprit.R2S.model.JobField;
 import tn.esprit.R2S.model.Notification;
 import tn.esprit.R2S.model.Reward;
 import tn.esprit.R2S.resource.util.Roles;
@@ -29,6 +31,9 @@ public class JobResource {
 
     @EJB
     private INotificationService notificationService;
+
+    @EJB
+    private IJobFieldService jobFieldService;
 
     @POST
     public Response createJob(Job job) throws URISyntaxException {
@@ -91,4 +96,9 @@ public class JobResource {
                 }).orElseThrow(NotFoundException::new);
     }
 
+    @GET
+    @Path("form")
+    public List<JobField> getJobField() {
+        return jobFieldService.findAll();
+    }
 }

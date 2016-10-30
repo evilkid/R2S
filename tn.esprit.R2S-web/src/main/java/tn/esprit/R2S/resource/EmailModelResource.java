@@ -1,10 +1,9 @@
 package tn.esprit.R2S.resource;
 
+import tn.esprit.R2S.interfaces.ICandidateFieldService;
 import tn.esprit.R2S.interfaces.IEmailModelService;
-import tn.esprit.R2S.model.Address;
-import tn.esprit.R2S.model.EmailModel;
-import tn.esprit.R2S.model.Job;
-import tn.esprit.R2S.model.Users;
+import tn.esprit.R2S.interfaces.IJobFieldService;
+import tn.esprit.R2S.model.*;
 
 import javax.ejb.EJB;
 import javax.json.Json;
@@ -24,6 +23,12 @@ public class EmailModelResource {
 
     @EJB
     private IEmailModelService emailModelService;
+
+    @EJB
+    private IJobFieldService jobFieldService;
+
+    @EJB
+    private ICandidateFieldService candidateFieldService;
 
     @POST
     public Response createEmailModel(EmailModel emailModel) throws URISyntaxException {
@@ -83,6 +88,7 @@ public class EmailModelResource {
             }
         }
 
+        //address fields
         JsonObjectBuilder addressObjectBuilder = Json.createObjectBuilder();
         for (Field field : address) {
             addressObjectBuilder.add(field.getName(), "{{candidate.address." + field.getName() + "}}");
@@ -90,6 +96,14 @@ public class EmailModelResource {
 
         candidateObjectBuilder.add("Address", addressObjectBuilder.build());
 
+        //extra fields
+        JsonObjectBuilder candidateExtraObjectBuilder = Json.createObjectBuilder();
+        for (CandidateField candidateField : candidateFieldService.findAll()) {
+            candidateExtraObjectBuilder.add(candidateField.getFieldName(), "{{candidate.extra." + candidateField.getFieldName() + "}}");
+        }
+        candidateObjectBuilder.add("Extra", candidateExtraObjectBuilder.build());
+
+        //sum up
         variables.add("Candidate", candidateObjectBuilder.build());
 
         //referee fields
@@ -111,6 +125,15 @@ public class EmailModelResource {
             }
         }
 
+        //extra fields
+        JsonObjectBuilder jobExtraObjectBuilder = Json.createObjectBuilder();
+        for (JobField jobField : jobFieldService.findAll()) {
+            jobExtraObjectBuilder.add(jobField.getFieldName(), "{{job.extra." + jobField.getFieldName() + "}}");
+        }
+
+        jobObjectBuilder.add("Extra", jobExtraObjectBuilder.build());
+
+        //sum up
         variables.add("Job", jobObjectBuilder.build());
         return Response.ok(variables.build()).build();
     }

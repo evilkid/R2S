@@ -4,6 +4,8 @@ import tn.esprit.R2S.interfaces.ICandidateFieldService;
 import tn.esprit.R2S.interfaces.IJobFieldService;
 import tn.esprit.R2S.model.CandidateField;
 import tn.esprit.R2S.model.JobField;
+import tn.esprit.R2S.resource.util.Roles;
+import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -14,7 +16,7 @@ import java.util.Optional;
  * Created by evilkid on 10/30/2016.
  */
 @Path("/api/settings")
-//@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
+@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
 public class SettingResource {
 
 

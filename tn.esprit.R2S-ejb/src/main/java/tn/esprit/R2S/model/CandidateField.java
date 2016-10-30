@@ -1,5 +1,6 @@
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import tn.esprit.R2S.util.enums.FieldType;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
  * Created by evilkid on 10/30/2016.
  */
 @Entity
+@JsonIgnoreProperties({"candidateFieldValues"})
 public class CandidateField {
 
     @Id
