@@ -69,7 +69,6 @@ public class EmailModelResource {
     @GET
     public Response getVariables() {
 
-        //TODO: investigate more
         JsonObjectBuilder variables = Json.createObjectBuilder();
 
         Field[] user = Users.class.getDeclaredFields();

@@ -23,12 +23,9 @@ public class Job implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     private String name;
 
-
     private String description;
-
 
     private Double salary;
 
@@ -47,6 +44,9 @@ public class Job implements Serializable {
 
     @ManyToMany(targetEntity = Skill.class, mappedBy = "jobs")
     private List<Skill> skills;
+
+    @OneToMany(targetEntity = JobFieldValue.class, mappedBy = "jobField")
+    private List<JobFieldValue> jobFieldValues;
 
     public Long getId() {
         return this.id;

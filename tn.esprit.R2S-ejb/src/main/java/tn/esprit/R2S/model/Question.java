@@ -22,7 +22,6 @@ public class Question implements Serializable {
 
     private String question;
 
-
     @Enumerated
     private QuestionType type;
 

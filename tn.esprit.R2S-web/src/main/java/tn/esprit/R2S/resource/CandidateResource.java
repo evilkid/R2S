@@ -16,9 +16,9 @@ public class CandidateResource {
     @EJB
     private ICandidateService candidateService;
 
+
     @GET
     public List<Candidate> getAllCandidates(@QueryParam("skillId") int skillId) {
-        System.out.println(skillId);
         return candidateService.findBySkillId(skillId);
     }
 

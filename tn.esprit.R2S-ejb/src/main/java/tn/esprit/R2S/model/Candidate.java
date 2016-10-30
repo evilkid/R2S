@@ -42,6 +42,9 @@ public class Candidate extends Users implements Serializable {
     @OneToMany(targetEntity = CandidateSkill.class, mappedBy = "candidate")
     private List<CandidateSkill> candidateSkills;
 
+    @OneToMany(targetEntity = CandidateFieldValue.class, mappedBy = "candidate")
+    private List<CandidateFieldValue> candidateFieldValues;
+
     public Employee getReferee() {
         return this.referee;
     }
@@ -106,4 +109,11 @@ public class Candidate extends Users implements Serializable {
         this.candidateSkills = candidateSkills;
     }
 
+    public List<CandidateFieldValue> getCandidateFieldValues() {
+        return candidateFieldValues;
+    }
+
+    public void setCandidateFieldValues(List<CandidateFieldValue> candidateFieldValues) {
+        this.candidateFieldValues = candidateFieldValues;
+    }
 }
