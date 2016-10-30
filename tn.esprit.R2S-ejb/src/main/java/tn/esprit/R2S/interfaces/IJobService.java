@@ -1,6 +1,7 @@
 package tn.esprit.R2S.interfaces;
 
 import tn.esprit.R2S.model.Job;
+import tn.esprit.R2S.util.enums.JobStatus;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface IJobService {
     Job find(Object id);
 
     List<Job> findAll();
+
+    List<Job> findByStatus(JobStatus jobStatus);
 }

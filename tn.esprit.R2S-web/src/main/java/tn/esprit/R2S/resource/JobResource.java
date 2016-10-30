@@ -2,8 +2,7 @@ package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.*;
-import tn.esprit.R2S.resource.util.Roles;
-import tn.esprit.R2S.resource.util.Secured;
+import tn.esprit.R2S.util.enums.JobStatus;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -14,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Path("/api/job")
-@Secured(Roles.RECRUITMENT_MANAGER)
+//@Secured(Roles.RECRUITMENT_MANAGER)
 public class JobResource {
 
     @EJB
@@ -73,7 +72,18 @@ public class JobResource {
     }
 
     @GET
-    public List<Job> getAllJobs() {
+    public List<Job> getAllJobs(@QueryParam("skillId") Long skillId, @QueryParam("jobStatus") JobStatus status) {
+        System.out.println(skillId);
+        System.out.println(status);
+
+        if (skillId != null) {
+            return null;
+        }
+
+        if (status != null) {
+            return jobService.findByStatus(status);
+        }
+
         return jobService.findAll();
     }
 
@@ -104,6 +114,7 @@ public class JobResource {
 
     @GET
     @Path("generate-link/{job-id}/{employee-id}")
+    //@Secured(Roles.EMPLOYEE)
     public Response generateLink(@PathParam("job-id") Long jobId, @PathParam("employee-id") Long employeeId) {
 
         Job job = jobService.find(jobId);
