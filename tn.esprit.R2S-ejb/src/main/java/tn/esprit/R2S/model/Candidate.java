@@ -15,7 +15,8 @@ import java.util.List;
  * @author EvilKids
  */
 @Entity
-@JsonIgnoreProperties({"certifications", "educations", "experiences", "jobs", "interviews", "candidateQuizModels", "candidateSkills"})
+@JsonIgnoreProperties({"certifications", "educations", "experiences", "jobs", "interviews", "candidateQuizModels",
+        "candidateSkills", "candidateFieldValues"})
 public class Candidate extends Users implements Serializable {
 
     @ManyToOne(targetEntity = Employee.class)
