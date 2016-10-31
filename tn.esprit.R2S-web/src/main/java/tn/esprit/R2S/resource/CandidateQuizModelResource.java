@@ -89,7 +89,7 @@ public class CandidateQuizModelResource {
     @Path("/historique")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Map<Double, CandidateQuizModel> getHistorique(){
+    public Map<CandidateQuizModel, Double> getHistorique() {
         return candidateQuizModelService.getHistorique();
     }
 
