@@ -16,5 +16,7 @@ public interface IRecruitmentManagerService {
 
     RecruitmentManager find(Object id);
 
+    RecruitmentManager findInitializeInterviews(Object id);
+
     List<RecruitmentManager> findAll();
 }
