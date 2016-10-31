@@ -16,5 +16,7 @@ public interface ISkillService {
 
     Skill find(Object id);
 
+    Skill findInitializeJob(Object id);
+
     List<Skill> findAll();
 }

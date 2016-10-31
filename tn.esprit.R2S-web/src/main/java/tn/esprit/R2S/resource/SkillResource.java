@@ -2,8 +2,6 @@ package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.ISkillService;
 import tn.esprit.R2S.model.Skill;
-import tn.esprit.R2S.resource.util.Roles;
-import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -14,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Path("/api/skill")
-@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
+//@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
 public class SkillResource {
 
     @EJB

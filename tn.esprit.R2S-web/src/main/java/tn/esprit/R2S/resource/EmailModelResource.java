@@ -1,11 +1,11 @@
 package tn.esprit.R2S.resource;
 
-import tn.esprit.R2S.interfaces.ICandidateFieldService;
-import tn.esprit.R2S.interfaces.IEmailModelService;
-import tn.esprit.R2S.interfaces.IJobFieldService;
+import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.*;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.jms.*;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,10 +26,66 @@ public class EmailModelResource {
     private IEmailModelService emailModelService;
 
     @EJB
+    private ICandidateService candidateService;
+
+    @EJB
+    private IJobService jobService;
+    @EJB
     private IJobFieldService jobFieldService;
 
     @EJB
     private ICandidateFieldService candidateFieldService;
+
+
+    @Resource
+    private ConnectionFactory connectionFactory;
+
+    @Resource(name = "emailServiceEJB", lookup = "java:/jms/queue/R2S")
+    private Queue emailServiceEJB;
+
+    @GET
+    @Path("/send/{email-model-id}/{candidate-cin}/{job-id}")
+    public Response sendEmail(@PathParam("email-model-id") Long emailModelId,
+                              @PathParam("candidate-cin") Long cin,
+                              @PathParam("job-id") Long jobId) throws JMSException {
+
+        EmailModel emailModel = emailModelService.find(emailModelId);
+        if (emailModel == null) {
+            throw new NotFoundException("Email model not found");
+        }
+
+        Candidate candidate = candidateService.find(cin);
+        if (candidate == null) {
+            throw new NotFoundException("Candidate not found");
+        }
+
+        Job job = jobService.find(jobId);
+        if (job == null) {
+            throw new NotFoundException("Job not found");
+        }
+
+
+        final Connection connection = connectionFactory.createConnection();
+
+        connection.start();
+
+        final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+        final MessageProducer emails = session.createProducer(emailServiceEJB);
+
+
+        HashMap<String, String> messages = new HashMap<>();
+
+        messages.put("recipient", candidate.getEmail());
+        messages.put("subject", "this is a subject");
+        messages.put("content", parseEmail(emailModel, candidate, job));
+
+        emails.send(session.createObjectMessage(messages));
+
+        connection.close();
+
+        return null;
+    }
 
     @POST
     public Response createEmailModel(EmailModel emailModel) throws URISyntaxException {
@@ -136,5 +193,10 @@ public class EmailModelResource {
         //sum up
         variables.add("Job", jobObjectBuilder.build());
         return Response.ok(variables.build()).build();
+    }
+
+
+    private String parseEmail(EmailModel emailModel, Candidate candidate, Job job) {
+        return "this is an email";
     }
 }

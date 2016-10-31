@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Entity
 @JsonRootName("job")
-@JsonIgnoreProperties({"quizModel", "rewards", "candidates", "skills"})
+@JsonIgnoreProperties(value = {"quizModel", "rewards", "skills", "candidates", "jobFieldValues"})
 public class Job implements Serializable {
 
     @Id
@@ -42,7 +42,7 @@ public class Job implements Serializable {
     @OneToMany(targetEntity = CandidateJob.class, mappedBy = "job")
     private List<CandidateJob> candidates;
 
-    @ManyToMany(targetEntity = Skill.class, mappedBy = "jobs")
+    @ManyToMany(targetEntity = Skill.class, mappedBy = "jobs", cascade = CascadeType.ALL)
     private List<Skill> skills;
 
     @OneToMany(targetEntity = JobFieldValue.class, mappedBy = "jobField")
@@ -120,4 +120,39 @@ public class Job implements Serializable {
         this.skills = skills;
     }
 
+    public List<JobFieldValue> getJobFieldValues() {
+        return jobFieldValues;
+    }
+
+    public void setJobFieldValues(List<JobFieldValue> jobFieldValues) {
+        this.jobFieldValues = jobFieldValues;
+    }
+
+    @Override
+    public String toString() {
+        return "Job{" +
+                "name='" + name + '\'' +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Job job = (Job) o;
+
+        return id.equals(job.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

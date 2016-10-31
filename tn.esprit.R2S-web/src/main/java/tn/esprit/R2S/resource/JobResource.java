@@ -34,11 +34,24 @@ public class JobResource {
     @EJB
     private IReferHashService referHashService;
 
+    @EJB
+    private ISkillService skillService;
+
     @POST
     public Response createJob(Job job) throws URISyntaxException {
         System.out.println("job " + job);
         jobService.create(job);
         return Response.created(new URI("/resources/api/job/" + job.getId())).entity(job).build();
+    }
+
+    //Rewards
+
+    @Path("/{id}/reward")
+    @GET
+    public Response getRewards(@PathParam("id") Long id) {
+        return Optional.ofNullable(jobService.findInitializeRewards(id))
+                .map(job -> Response.ok(job.getRewards()).build())
+                .orElseThrow(NotFoundException::new);
     }
 
     @Path("/{id}/reward")
@@ -50,6 +63,40 @@ public class JobResource {
                     rewardService.create(reward);
                     return Response.status(Response.Status.CREATED).entity(reward).build();
                 })
+                .orElseThrow(NotFoundException::new);
+    }
+
+    //Skills
+
+    @Path("/{id}/skill")
+    @POST
+    public Response addSkill(Skill skill, @PathParam("id") Long id) {
+        Job job = jobService.find(id);
+        if (job == null) {
+            throw new NotFoundException("Job Not Found");
+        }
+
+        skill = skillService.findInitializeJob(skill.getId());
+        if (skill == null) {
+            throw new NotFoundException("Skill Not Found");
+        }
+
+        if (!skill.getJobs().contains(job)) {
+            skill.getJobs().add(job);
+            skillService.edit(skill);
+        } else {
+            throw new NotAllowedException("The job already has the skill");
+        }
+
+        return Response.ok().build();
+    }
+
+    @Path("/{id}/skill")
+    @GET
+    public Response getSkills(@PathParam("id") Long id) {
+
+        return Optional.ofNullable(jobService.findInitializeSkills(id))
+                .map(job -> Response.ok(job.getSkills()).build())
                 .orElseThrow(NotFoundException::new);
     }
 
@@ -77,7 +124,7 @@ public class JobResource {
         System.out.println(status);
 
         if (skillId != null) {
-            return null;
+            return jobService.findBySkill(skillId);
         }
 
         if (status != null) {

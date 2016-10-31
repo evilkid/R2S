@@ -23,4 +23,11 @@ public class SkillService extends AbstractService<Skill> implements ISkillServic
         return em;
     }
 
+    @Override
+    public Skill findInitializeJob(Object id) {
+        Skill skill = find(id);
+        skill.getJobs().size();
+
+        return skill;
+    }
 }

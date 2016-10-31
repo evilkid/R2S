@@ -30,12 +30,40 @@ public class JobService extends AbstractService<Job> implements IJobService {
     }
 
     @Override
+    public Job findInitializeRewards(Object id) {
+        Job job = find(id);
+        job.getRewards().size();
+        return job;
+    }
+
+    @Override
+    public Job findInitializeSkills(Object id) {
+        Job job = find(id);
+        job.getSkills().size();
+        return job;
+    }
+
+    @Override
     public List<Job> findByStatus(JobStatus jobStatus) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<Job> query = criteriaBuilder.createQuery(Job.class);
         Root<Job> jobRoot = query.from(Job.class);
         query.select(jobRoot)
                 .where(criteriaBuilder.equal(jobRoot.get("status"), jobStatus));
+        try {
+            return em.createQuery(query).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Job> findBySkill(Long skillId) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<Job> query = criteriaBuilder.createQuery(Job.class);
+        Root<Job> jobRoot = query.from(Job.class);
+        query.select(jobRoot)
+                .where(criteriaBuilder.equal(jobRoot.join("skills").get("id"), skillId));
         try {
             return em.createQuery(query).getResultList();
         } catch (NoResultException e) {

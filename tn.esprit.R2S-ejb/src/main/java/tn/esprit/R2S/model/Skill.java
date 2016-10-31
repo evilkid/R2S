@@ -26,7 +26,7 @@ public class Skill implements Serializable {
     @OneToMany(targetEntity = CandidateSkill.class, mappedBy = "skill")
     private List<CandidateSkill> candidateSkills;
 
-    @ManyToMany(targetEntity = Job.class)
+    @ManyToMany(targetEntity = Job.class, cascade = CascadeType.MERGE)
     private List<Job> jobs;
 
     public Long getId() {
@@ -61,4 +61,10 @@ public class Skill implements Serializable {
         this.jobs = jobs;
     }
 
+    @Override
+    public String toString() {
+        return "Skill{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

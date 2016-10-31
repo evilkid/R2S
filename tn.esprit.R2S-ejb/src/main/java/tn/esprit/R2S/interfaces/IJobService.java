@@ -17,7 +17,14 @@ public interface IJobService {
 
     Job find(Object id);
 
+    Job findInitializeRewards(Object id);
+
+    Job findInitializeSkills(Object id);
+
     List<Job> findAll();
 
     List<Job> findByStatus(JobStatus jobStatus);
+
+    List<Job> findBySkill(Long skillId);
+
 }
