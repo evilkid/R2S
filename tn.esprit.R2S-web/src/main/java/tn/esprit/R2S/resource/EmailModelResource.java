@@ -102,7 +102,12 @@ public class EmailModelResource {
     }
 
     @PUT
-    public Response updateEmailModel(EmailModel emailModel) throws URISyntaxException {
+    @Path("{email-model-id}")
+    public Response updateEmailModel(EmailModel emailModel, @PathParam("email-model-id") Long emailModelId) throws URISyntaxException {
+
+        if (!emailModel.getId().equals(emailModelId)) {
+            throw new NotAllowedException("The ids does not match");
+        }
 
         emailModelService.edit(emailModel);
         return Response.ok().entity(emailModel).build();
