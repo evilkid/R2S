@@ -1,11 +1,14 @@
 package tn.esprit.R2S.resource;
 
+import org.apache.commons.lang3.StringUtils;
 import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.*;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.jms.*;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.Queue;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
@@ -13,9 +16,11 @@ import javax.ws.rs.core.Response;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Path("/api/email-model")
 //@Secured(Roles.RECRUITMENT_MANAGER)
@@ -30,6 +35,7 @@ public class EmailModelResource {
 
     @EJB
     private IJobService jobService;
+
     @EJB
     private IJobFieldService jobFieldService;
 
@@ -64,8 +70,13 @@ public class EmailModelResource {
             throw new NotFoundException("Job not found");
         }
 
+        try {
+            System.out.println(parseEmail(emailModel, candidate, job));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        final Connection connection = connectionFactory.createConnection();
+        /*final Connection connection = connectionFactory.createConnection();
 
         connection.start();
 
@@ -82,7 +93,7 @@ public class EmailModelResource {
 
         emails.send(session.createObjectMessage(messages));
 
-        connection.close();
+        connection.close();*/
 
         return null;
     }
@@ -196,7 +207,71 @@ public class EmailModelResource {
     }
 
 
-    private String parseEmail(EmailModel emailModel, Candidate candidate, Job job) {
-        return "this is an email";
+    private String parseEmail(EmailModel emailModel, Candidate candidate, Job job) throws Exception {
+
+        String content = emailModel.getContent();
+
+        String regex = "\\{\\{(.*?)\\}\\}";
+
+        List<String> keywords = new ArrayList<>();
+        Pattern pattern = Pattern.compile(regex);
+
+        Matcher matcher = pattern.matcher(content);
+
+        while (matcher.find()) {
+            keywords.add(matcher.group());
+        }
+
+        for (String keyword : keywords) {
+            String[] fields = keyword.replaceAll("[\\{\\}]", "").split("\\.");
+            switch (fields[0]) {
+                case "candidate":
+                    if (fields.length == 2) {
+                        content = StringUtils.replace(content,
+                                keyword,
+                                Users.class.getMethod("get" + StringUtils.capitalize(fields[1]))
+                                        .invoke(candidate).toString()
+                        );
+
+                    } else if (fields.length == 3 && fields[1].equals("address")) {
+                        Object obj = Users.class.getMethod("get" + StringUtils.capitalize(fields[1])).invoke(candidate);
+                        String value = Address.class.getMethod("get" + StringUtils.capitalize(fields[2])).invoke(obj).toString();
+                        content = StringUtils.replace(content, keyword, value);
+                    } else if (fields.length == 3 && fields[1].equals("extra")) {
+
+                        CandidateField candidateField = candidateFieldService.findByName(fields[2]);
+                        CandidateFieldValue value = candidateFieldService.findValue(candidateField, candidate);
+                        if (value != null) {
+                            content = StringUtils.replace(content, keyword, value.getValue());
+                        }
+                    }
+                    break;
+                case "referee":
+                    content = StringUtils.replace(content,
+                            keyword,
+                            Users.class.getMethod("get" + StringUtils.capitalize(fields[1]))
+                                    .invoke(candidate.getReferee()).toString()
+                    );
+                    break;
+                case "job":
+                    if (fields.length == 2) {
+                        content = StringUtils.replace(content,
+                                keyword,
+                                Job.class.getMethod("get" + StringUtils.capitalize(fields[1]))
+                                        .invoke(job).toString()
+                        );
+
+                    } else if (fields.length == 3 && fields[1].equals("extra")) {
+                        JobField jobField = jobFieldService.findByName(fields[2]);
+                        JobFieldValue value = jobFieldService.findValue(jobField, job);
+                        if (value != null) {
+                            content = StringUtils.replace(content, keyword, value.getValue());
+                        }
+                    }
+                    break;
+            }
+        }
+
+        return content;
     }
 }

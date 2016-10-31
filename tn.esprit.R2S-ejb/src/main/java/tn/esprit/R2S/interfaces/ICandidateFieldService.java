@@ -1,6 +1,8 @@
 package tn.esprit.R2S.interfaces;
 
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.CandidateField;
+import tn.esprit.R2S.model.CandidateFieldValue;
 
 import java.util.List;
 
@@ -20,4 +22,5 @@ public interface ICandidateFieldService {
 
     List<CandidateField> findAll();
 
+    CandidateFieldValue findValue(CandidateField candidateField, Candidate candidate);
 }

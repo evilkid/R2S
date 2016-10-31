@@ -1,6 +1,8 @@
 package tn.esprit.R2S.interfaces;
 
+import tn.esprit.R2S.model.Job;
 import tn.esprit.R2S.model.JobField;
+import tn.esprit.R2S.model.JobFieldValue;
 
 import java.util.List;
 
@@ -20,5 +22,7 @@ public interface IJobFieldService {
     JobField findByName(String fieldName);
 
     List<JobField> findAll();
+
+    JobFieldValue findValue(JobField jobField, Job job);
 
 }

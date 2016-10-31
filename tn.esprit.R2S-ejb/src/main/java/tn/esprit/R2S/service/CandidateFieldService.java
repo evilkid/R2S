@@ -1,7 +1,9 @@
 package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.ICandidateFieldService;
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.CandidateField;
+import tn.esprit.R2S.model.CandidateFieldValue;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -38,6 +40,26 @@ public class CandidateFieldService extends AbstractService<CandidateField> imple
                 .select(candidateFieldRoot)
                 .where(criteriaBuilder.equal(
                         candidateFieldRoot.get("fieldName"), fieldName)
+                );
+
+        try {
+            return em.createQuery(query).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public CandidateFieldValue findValue(CandidateField candidateField, Candidate candidate) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<CandidateFieldValue> query = criteriaBuilder.createQuery(CandidateFieldValue.class);
+        Root<CandidateFieldValue> candidateFieldValueRoot = query.from(CandidateFieldValue.class);
+
+        query
+                .select(candidateFieldValueRoot)
+                .where(
+                        criteriaBuilder.equal(candidateFieldValueRoot.get("candidateField"), candidateField),
+                        criteriaBuilder.equal(candidateFieldValueRoot.get("candidate"), candidate)
                 );
 
         try {

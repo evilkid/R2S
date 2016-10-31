@@ -1,7 +1,9 @@
 package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.IJobFieldService;
+import tn.esprit.R2S.model.Job;
 import tn.esprit.R2S.model.JobField;
+import tn.esprit.R2S.model.JobFieldValue;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -40,6 +42,26 @@ public class JobFieldService extends AbstractService<JobField> implements IJobFi
                 .select(jobFieldRoot)
                 .where(criteriaBuilder.equal(
                         jobFieldRoot.get("fieldName"), fieldName)
+                );
+
+        try {
+            return em.createQuery(query).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public JobFieldValue findValue(JobField jobField, Job job) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<JobFieldValue> query = criteriaBuilder.createQuery(JobFieldValue.class);
+        Root<JobFieldValue> jobFieldValueRoot = query.from(JobFieldValue.class);
+
+        query
+                .select(jobFieldValueRoot)
+                .where(
+                        criteriaBuilder.equal(jobFieldValueRoot.get("jobField"), jobField),
+                        criteriaBuilder.equal(jobFieldValueRoot.get("job"), job)
                 );
 
         try {
