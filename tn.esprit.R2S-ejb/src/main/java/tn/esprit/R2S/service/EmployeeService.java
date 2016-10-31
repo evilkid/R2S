@@ -23,4 +23,12 @@ public class EmployeeService extends AbstractService<Employee> implements IEmplo
         return em;
     }
 
+    @Override
+    public float calculReward() {
+        return sommeRewards() * 15;
+    }
+
+    float sommeRewards() {
+        return 0;
+    }
 }

@@ -55,6 +55,7 @@ public class EmployeeResource {
 
         employeeService.remove(employeeService.find(cin));
         return HeaderUtil.createEntityDeletionAlert(Response.ok(), "employee", cin.toString()).build();
+
     }
 
 }

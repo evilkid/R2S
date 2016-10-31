@@ -50,9 +50,11 @@ public class EmailServiceBean implements MessageListener {
     }
 
     private void sendMail(HashMap vars) {
+        System.out.println(vars);
         Transport transport = null;
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", HOST);
+        properties.put("mail.smtp.ssl.trust", HOST);
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.port", "587");
         Session session = Session.getInstance(properties,

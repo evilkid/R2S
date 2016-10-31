@@ -6,9 +6,7 @@ import tn.esprit.R2S.model.*;
 
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.Queue;
+import javax.jms.*;
 import javax.json.Json;
 import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
@@ -17,6 +15,7 @@ import java.lang.reflect.Field;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
@@ -41,7 +40,6 @@ public class EmailModelResource {
 
     @EJB
     private ICandidateFieldService candidateFieldService;
-
 
     @Resource
     private ConnectionFactory connectionFactory;
@@ -71,29 +69,27 @@ public class EmailModelResource {
         }
 
         try {
-            System.out.println(parseEmail(emailModel, candidate, job));
+            final Connection connection = connectionFactory.createConnection();
+
+            connection.start();
+
+            final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+            final MessageProducer emails = session.createProducer(emailServiceEJB);
+
+
+            HashMap<String, String> messages = new HashMap<>();
+
+            messages.put("recipient", candidate.getEmail());
+            messages.put("subject", "this is a subject");
+            messages.put("content", parseEmail(emailModel, candidate, job));
+
+            emails.send(session.createObjectMessage(messages));
+
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        /*final Connection connection = connectionFactory.createConnection();
-
-        connection.start();
-
-        final Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-        final MessageProducer emails = session.createProducer(emailServiceEJB);
-
-
-        HashMap<String, String> messages = new HashMap<>();
-
-        messages.put("recipient", candidate.getEmail());
-        messages.put("subject", "this is a subject");
-        messages.put("content", parseEmail(emailModel, candidate, job));
-
-        emails.send(session.createObjectMessage(messages));
-
-        connection.close();*/
 
         return null;
     }
@@ -234,8 +230,8 @@ public class EmailModelResource {
                         );
 
                     } else if (fields.length == 3 && fields[1].equals("address")) {
-                        Object obj = Users.class.getMethod("get" + StringUtils.capitalize(fields[1])).invoke(candidate);
-                        String value = Address.class.getMethod("get" + StringUtils.capitalize(fields[2])).invoke(obj).toString();
+                        Object address = Users.class.getMethod("get" + StringUtils.capitalize(fields[1])).invoke(candidate);
+                        String value = Address.class.getMethod("get" + StringUtils.capitalize(fields[2])).invoke(address).toString();
                         content = StringUtils.replace(content, keyword, value);
                     } else if (fields.length == 3 && fields[1].equals("extra")) {
 

@@ -17,4 +17,6 @@ public interface IEmployeeService {
     Employee find(Object id);
 
     List<Employee> findAll();
+
+    float calculReward();
 }

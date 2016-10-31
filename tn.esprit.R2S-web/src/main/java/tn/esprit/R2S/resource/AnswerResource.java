@@ -42,6 +42,7 @@ public class AnswerResource {
 
     @Path("/{id}")
     @GET
+
     public Response getAnswer(@PathParam("id") Long id) {
 
         Answer answer = answerService.find(id);
