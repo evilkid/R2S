@@ -41,6 +41,7 @@ public abstract class AbstractService<T> {
         return getEntityManager().createQuery(cq).getResultList();
     }
 
+
     public T findSingleByNamedQuery(String namedQueryName, Class<T> classT) {
         try {
             return getEntityManager().createNamedQuery(namedQueryName, classT).getSingleResult();

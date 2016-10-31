@@ -165,7 +165,7 @@ public class EmailModelResource {
 
         candidateObjectBuilder.add("Address", addressObjectBuilder.build());
 
-        //extra fields
+        //extra fields   //oumayma
         JsonObjectBuilder candidateExtraObjectBuilder = Json.createObjectBuilder();
         for (CandidateField candidateField : candidateFieldService.findAll()) {
             candidateExtraObjectBuilder.add(candidateField.getFieldName(), "{{candidate.extra." + candidateField.getFieldName() + "}}");
@@ -194,7 +194,7 @@ public class EmailModelResource {
             }
         }
 
-        //extra fields
+        //extra fields   //oumayma
         JsonObjectBuilder jobExtraObjectBuilder = Json.createObjectBuilder();
         for (JobField jobField : jobFieldService.findAll()) {
             jobExtraObjectBuilder.add(jobField.getFieldName(), "{{job.extra." + jobField.getFieldName() + "}}");
