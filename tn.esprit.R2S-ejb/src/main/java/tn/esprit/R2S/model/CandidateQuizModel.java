@@ -86,4 +86,19 @@ public class CandidateQuizModel implements Serializable {
         this.candidate = candidate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CandidateQuizModel)) return false;
+
+        CandidateQuizModel that = (CandidateQuizModel) o;
+
+        return id.equals(that.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

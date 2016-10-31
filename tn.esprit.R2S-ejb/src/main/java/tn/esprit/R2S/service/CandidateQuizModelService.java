@@ -63,11 +63,11 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
     }
 
     @Override
-    public Map<Double, CandidateQuizModel> getHistorique() {
-        Map<Double, CandidateQuizModel> scoreQuizMap = new LinkedHashMap();
+    public Map<CandidateQuizModel, Double> getHistorique() {
+        Map<CandidateQuizModel, Double> scoreQuizMap = new LinkedHashMap();
         List<CandidateQuizModel> candidateQuizModelList = findAll();
         candidateQuizModelList.sort((c1, c2) -> Double.compare(calculateScore(c1), calculateScore(c2)));
-        candidateQuizModelList.forEach(candidateQuizModel -> scoreQuizMap.put(calculateScore(candidateQuizModel), candidateQuizModel));
+        candidateQuizModelList.forEach(candidateQuizModel -> scoreQuizMap.put(candidateQuizModel, calculateScore(candidateQuizModel)));
         return scoreQuizMap;
     }
 
