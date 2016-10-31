@@ -16,7 +16,7 @@ import java.util.Optional;
  * Created by evilkid on 10/30/2016.
  */
 @Path("/api/settings")
-@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
+//@Secured(Roles.CHIEF_HUMAN_RESOURCES_OFFICER)
 public class SettingResource {
 
 
@@ -54,9 +54,11 @@ public class SettingResource {
 
         return Optional.ofNullable(jobFieldService.find(id))
                 .map(field -> {
-
+                    jobField.setId(id);
                     JobField jb = jobFieldService.findByName(jobField.getFieldName());
-                    if (jb != null && jb.getId() != jobField.getId() && jb.getFieldName().equals(jobField.getFieldName())) {
+                    if (jb != null
+                            && jb.getId() != jobField.getId()
+                            && jb.getFieldName().equals(jobField.getFieldName())) {
                         throw new NotAllowedException("Field with the name " + jobField.getFieldName() + " already exist");
                     }
 
@@ -72,7 +74,7 @@ public class SettingResource {
 
         return Optional.ofNullable(candidateFieldService.find(id))
                 .map(field -> {
-
+                    candidateField.setId(id);
                     CandidateField cf = candidateFieldService.findByName(candidateField.getFieldName());
                     if (cf != null && cf.getId() != candidateField.getId() && cf.getFieldName().equals(candidateField.getFieldName())) {
                         throw new NotAllowedException("Field with the name " + candidateField.getFieldName() + " already exist");
