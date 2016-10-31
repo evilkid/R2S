@@ -23,5 +23,5 @@ public interface ICandidateQuizModelService {
 
     double calculateSingleQuestionNote(CandidateQuizModel candidateQuizModel, Question question);
 
-    Map<Double, CandidateQuizModel> getHistorique();
+    Map<CandidateQuizModel, Double> getHistorique();
 }
