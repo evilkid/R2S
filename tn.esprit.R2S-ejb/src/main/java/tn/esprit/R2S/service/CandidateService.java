@@ -2,15 +2,16 @@ package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.model.Candidate;
-import tn.esprit.R2S.model.Certification;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.criteria.*;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @Stateless
 public class CandidateService extends AbstractService<Candidate> implements ICandidateService {
@@ -152,31 +153,48 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
 
     private List<Candidate> findByExperience(Integer infBound, Integer supBound) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Candidate> c = cb.createQuery(Candidate.class);
-        Root<Candidate> candidate = c.from(Candidate.class);
+        CriteriaQuery<Candidate> query = cb.createQuery(Candidate.class);
+        Root<Candidate> candidateRoot = query.from(Candidate.class);
 
-        Join join = candidate.join("experiences");
+        Join join = candidateRoot.join("experiences");
 
         Expression sum = cb.sum(
                 cb.diff(join.get("dateEnd"), join.get("dateStart"))
         );
 
-        c.multiselect(candidate, sum);
+        query.multiselect(candidateRoot, sum);
 
         if (supBound != null) {
-            c.having(cb.between(sum, infBound, supBound));
+            query.having(cb.between(sum, infBound, supBound));
         } else {
-            c.having(cb.ge(sum, infBound));
+            query.having(cb.ge(sum, infBound));
         }
 
-        c.groupBy(candidate);
-        c.select(candidate);
+        query.groupBy(candidateRoot);
+        query.select(candidateRoot);
 
-        return em.createQuery(c).getResultList();
+        return em.createQuery(query).getResultList();
     }
 
     @Override
-    public List<Candidate> findByCertification(Certification certification) {
+    public List<Candidate> findByCertification(String certificateName) {
+
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Candidate> query = cb.createQuery(Candidate.class);
+        Root<Candidate> candidateRoot = query.from(Candidate.class);
+
+        Join join = candidateRoot.join("certifications");
+
+        String search = "%" + certificateName + "%";
+        System.out.println(search);
+        Expression condition = cb.like(join.get("name"), search);
+
+        query.where(condition);
+        query.groupBy(candidateRoot);
+        query.select(candidateRoot);
+
+        return em.createQuery(query).getResultList();
+        /*
         String query = "SELECT q FROM Candidate q";
         Query q = em.createQuery(query);
         List<Candidate> candidates = q.getResultList();
@@ -194,7 +212,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
             v.printStackTrace();
 
         }
-        return result;
+        return result;*/
     }
 
 

@@ -24,26 +24,27 @@ public class CandidateResource {
 
     @EJB
     private IJobService jobService;
+
     @EJB
     private ICertificationService certificationService;
 
     @GET
     public Response getAllCandidates(@QueryParam("skillId") Integer skillId,
                                      @QueryParam("numDaysExpInf") Integer numDaysExpInf,
-                                     @QueryParam("numDaysExpSup") Integer numDaysExpSup) {
+                                     @QueryParam("numDaysExpSup") Integer numDaysExpSup,
+                                     @QueryParam("certification") String certificationName) {
 
         List<Candidate> result = null;
 
         if (skillId != null) {
             result = candidateService.findBySkillId(skillId);
-        }
-
-        if (numDaysExpInf != null && numDaysExpSup != null) {
+        } else if (numDaysExpInf != null && numDaysExpSup != null) {
             result = candidateService.findByExperienceBetween(numDaysExpInf, numDaysExpSup);
-        }
-
-        if (numDaysExpInf != null) {
+        } else if (numDaysExpInf != null) {
             result = candidateService.findByExperience(numDaysExpInf);
+        } else if (certificationName != null) {
+            result = candidateService.findByCertification(certificationName);
+
         }
 
         return Response.ok(result).build();
@@ -114,7 +115,7 @@ public class CandidateResource {
 
         Certification certification = certificationService.find(certificationId);
         if (certification != null) {
-            return candidateService.findByCertification(certification);
+            return candidateService.findByCertification("name");
         }
 
         return null;
