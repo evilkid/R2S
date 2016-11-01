@@ -21,6 +21,11 @@ public class CandidateJobPK implements Serializable {
 
     }
 
+    public CandidateJobPK(Long job, Long candidate) {
+        this.job = job;
+        this.candidate = candidate;
+    }
+
     public Long getJob() {
         return this.job;
     }

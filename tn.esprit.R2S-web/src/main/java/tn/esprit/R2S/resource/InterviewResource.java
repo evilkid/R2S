@@ -65,6 +65,10 @@ public class InterviewResource {
 
         return Optional.ofNullable(interviewService.find(interviewId))
                 .map(interv -> {
+                    if (!interview.equals(interv)) {
+                        throw new NotAllowedException("Different Ids passed");
+                    }
+
                     interv.setDate(interview.getDate());
 
                     interviewService.edit(interv);
