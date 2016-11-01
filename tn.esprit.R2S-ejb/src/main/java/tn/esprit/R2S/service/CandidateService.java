@@ -2,22 +2,25 @@ package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.model.Candidate;
+import tn.esprit.R2S.model.Experience;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
+import java.util.*;
 
 @Stateless
-
 public class CandidateService extends AbstractService<Candidate> implements ICandidateService {
+
 
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;
+
 
     public CandidateService() {
         super(Candidate.class);
@@ -55,4 +58,68 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
             return null;
         }
     }
+
+    //month
+    @Override
+    public Set<Candidate> findByExperience(int duration) {
+
+        String query = "SELECT q FROM Experience q ";
+        Query q = em.createQuery(query);
+        List<Experience> experiences = q.getResultList();
+        Set<Candidate> candidates = new HashSet<>();
+        for (Experience e : experiences
+                ) {
+
+            try {
+                int d = nbOfMonthsBetweenTwoDates(e.getDateEnd(), e.getDateStart());
+                if (d >= duration)
+                    candidates.add(e.getCandidate());
+
+            } catch (Exception v) {
+                v.printStackTrace();
+
+            }
+        }
+        return candidates;
+    }
+
+
+    @Override
+    public Set<Candidate> findByExperienceBetween(int duration1, int duration2) {
+        String query = "SELECT q FROM Experience q ";
+        Query q = em.createQuery(query);
+        List<Experience> experiences = q.getResultList();
+        Set<Candidate> candidates = new HashSet<>();
+        try {
+            for (Experience e : experiences
+                    ) {
+
+                int duration = nbOfMonthsBetweenTwoDates(e.getDateEnd(), e.getDateStart());
+                if ((duration >= duration1) && (duration <= duration2))
+                    candidates.add(e.getCandidate());
+
+            }
+
+        } catch (Exception v) {
+            v.printStackTrace();
+
+        }
+
+        return candidates;
+    }
+
+
+    private int nbOfMonthsBetweenTwoDates(Date dateString1, Date dateString2) throws Exception {
+        Calendar startCalendar = new GregorianCalendar();
+        startCalendar.setTime(dateString1);
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(dateString2);
+
+        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+
+        System.out.println("mois");
+        System.out.println(diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH));
+        return diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+    }
+
 }

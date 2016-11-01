@@ -4,6 +4,7 @@ import tn.esprit.R2S.model.Candidate;
 
 import javax.ejb.Local;
 import java.util.List;
+import java.util.Set;
 
 @Local
 public interface ICandidateService {
@@ -20,4 +21,8 @@ public interface ICandidateService {
     List<Candidate> findAll();
 
     List<Candidate> findBySkillId(int skillId);
+
+    Set<Candidate> findByExperience(int duration);
+
+    Set<Candidate> findByExperienceBetween(int duration1, int duration2);
 }
