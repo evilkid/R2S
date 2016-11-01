@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class CandidateJob implements Serializable {

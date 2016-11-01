@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class CandidateAnswer implements Serializable {

@@ -7,7 +7,7 @@ import tn.esprit.R2S.util.enums.JobStatus;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/18/2016.
+ * Created by EvilKids on 10/18/2016.
  */
 public interface IJobService {
     void create(Job job);

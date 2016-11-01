@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class Experience implements Serializable {

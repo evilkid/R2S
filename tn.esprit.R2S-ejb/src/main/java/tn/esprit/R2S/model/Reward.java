@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class Reward implements Serializable {

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Optional;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class Notification implements Serializable {

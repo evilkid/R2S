@@ -5,7 +5,7 @@ import tn.esprit.R2S.model.RecruitmentManager;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/18/2016.
+ * Created by EvilKids on 10/18/2016.
  */
 public interface IRecruitmentManagerService {
     void create(RecruitmentManager recruitmentManager);

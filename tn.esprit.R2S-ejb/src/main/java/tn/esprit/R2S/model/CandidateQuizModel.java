@@ -11,7 +11,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class CandidateQuizModel implements Serializable {

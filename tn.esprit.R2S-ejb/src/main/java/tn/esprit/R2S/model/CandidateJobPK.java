@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Embeddable
 public class CandidateJobPK implements Serializable {

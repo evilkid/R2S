@@ -14,7 +14,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 
 @Stateless

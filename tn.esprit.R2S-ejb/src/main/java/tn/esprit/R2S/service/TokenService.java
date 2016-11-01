@@ -9,7 +9,7 @@ import javax.ejb.Startup;
 import java.security.Key;
 
 /**
- * Created by evilkid on 10/21/2016.
+ * Created by EvilKids on 10/21/2016.
  */
 @Singleton
 @Startup

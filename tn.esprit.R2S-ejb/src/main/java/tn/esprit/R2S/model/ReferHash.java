@@ -3,14 +3,15 @@ package tn.esprit.R2S.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 
 @Entity
-public class ReferHash {
+public class ReferHash implements Serializable {
 
     @Id
     private String hash;

@@ -1,12 +1,13 @@
 package tn.esprit.R2S.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 @Entity
-public class JobFieldValue {
+public class JobFieldValue implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import tn.esprit.R2S.util.enums.FieldType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 @Entity
 @JsonIgnoreProperties({"candidateFieldValues"})
-public class CandidateField {
+public class CandidateField implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

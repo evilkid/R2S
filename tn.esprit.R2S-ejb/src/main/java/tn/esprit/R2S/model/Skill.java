@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 @JsonIgnoreProperties({"candidateSkills", "jobs"})
