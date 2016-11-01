@@ -11,7 +11,6 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Path("/api/candidate")
 public class CandidateResource {
@@ -80,13 +79,13 @@ public class CandidateResource {
 
     @GET
     @Path("/exp/{duration}")
-    public Set<Candidate> getCandidateByExperience(@PathParam("duration") int duration) {
+    public List<Candidate> getCandidateByExperience(@PathParam("duration") int duration) {
         return candidateService.findByExperience(duration);
     }
 
     @GET
     @Path("/exp/{duration1}/{duration2}")
-    public Set<Candidate> getCandidateByExperienceBetweenDurations(@PathParam("duration1") int duration1
+    public List<Candidate> getCandidateByExperienceBetweenDurations(@PathParam("duration1") int duration1
             , @PathParam("duration2") int duration2) {
         return candidateService.findByExperienceBetween(duration1, duration2);
     }
@@ -97,8 +96,9 @@ public class CandidateResource {
 
 
         Certification certification = certificationService.find(certificationId);
-        if (certification != null)
+        if (certification != null) {
             return candidateService.findByCertification(certification);
+        }
 
         return null;
     }
