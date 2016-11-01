@@ -8,9 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 @Stateless
@@ -67,39 +64,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
 
         return findByExperience(duration, null);
 
-        /*CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Candidate> c = cb.createQuery(Candidate.class);
-        Root<Candidate> candidate = c.from(Candidate.class);
 
-        Join join = candidate.join("experiences");
-
-        Expression sum = cb.sum(
-                cb.diff(join.get("dateEnd"), join.get("dateStart"))
-        );
-
-        c.multiselect(candidate, sum).having(cb.ge(sum, duration)).groupBy(candidate).select(candidate);
-
-
-        return em.createQuery(c).getResultList();*/
-        /*
-        String query = "SELECT q FROM Experience q ";
-        Query q = em.createQuery(query);
-        List<Experience> experiences = q.getResultList();
-        Set<Candidate> candidates = new HashSet<>();
-        for (Experience e : experiences
-                ) {
-
-            try {
-                int d = nbOfMonthsBetweenTwoDates(e.getDateEnd(), e.getDateStart());
-                if (d >= duration)
-                    candidates.add(e.getCandidate());
-
-            } catch (Exception v) {
-                v.printStackTrace();
-
-            }
-        }
-        return candidates;*/
     }
 
 
@@ -108,46 +73,6 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
 
         return findByExperience(duration1, duration2);
 
-
-        /*CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<Candidate> c = cb.createQuery(Candidate.class);
-        Root<Candidate> candidate = c.from(Candidate.class);
-
-        Join join = candidate.join("experiences");
-
-        Expression sum = cb.sum(
-                cb.diff(join.get("dateEnd"), join.get("dateStart"))
-        );
-
-        c.multiselect(candidate, sum);
-        c.having(cb.between(sum, duration1, duration2));
-        c.groupBy(candidate);
-        c.select(candidate);
-
-
-        return em.createQuery(c).getResultList();*/
-/*
-        String query = "SELECT q FROM Experience q ";
-        Query q = em.createQuery(query);
-        List<Experience> experiences = q.getResultList();
-        Set<Candidate> candidates = new HashSet<>();
-        try {
-            for (Experience e : experiences
-                    ) {
-
-                int duration = nbOfMonthsBetweenTwoDates(e.getDateEnd(), e.getDateStart());
-                if ((duration >= duration1) && (duration <= duration2)) {
-                    candidates.add(e.getCandidate());
-                }
-
-            }
-
-        } catch (Exception v) {
-            v.printStackTrace();
-
-        }
-
-        return candidates;*/
     }
 
 
@@ -213,20 +138,6 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
 
         }
         return result;*/
-    }
-
-
-    private int nbOfMonthsBetweenTwoDates(Date dateString1, Date dateString2) throws Exception {
-        Calendar startCalendar = new GregorianCalendar();
-        startCalendar.setTime(dateString1);
-        Calendar endCalendar = new GregorianCalendar();
-        endCalendar.setTime(dateString2);
-
-        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
-
-        System.out.println("mois");
-        System.out.println(diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH));
-        return diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
     }
 
 }

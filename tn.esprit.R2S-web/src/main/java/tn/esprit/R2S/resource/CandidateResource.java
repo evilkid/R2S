@@ -110,7 +110,7 @@ public class CandidateResource {
 
     @GET
     @Path("/cer/{certificationId}")
-    public List<Candidate> getCandidateByExperienceBetweenDurations(@PathParam("certificationId") long certificationId) {
+    public List<Candidate> getCandidateByCertification(@PathParam("certificationId") long certificationId) {
 
 
         Certification certification = certificationService.find(certificationId);
