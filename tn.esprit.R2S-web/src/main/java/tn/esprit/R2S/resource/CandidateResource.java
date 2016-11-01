@@ -115,7 +115,7 @@ public class CandidateResource {
 
         Certification certification = certificationService.find(certificationId);
         if (certification != null) {
-            return candidateService.findByCertification("name");
+            return candidateService.findByCertification(certification.getName());
         }
 
         return null;

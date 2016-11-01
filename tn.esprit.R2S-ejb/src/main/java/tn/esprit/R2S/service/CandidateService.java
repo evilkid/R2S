@@ -110,9 +110,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
 
         Join join = candidateRoot.join("certifications");
 
-        String search = "%" + certificateName + "%";
-        System.out.println(search);
-        Expression condition = cb.like(join.get("name"), search);
+        Expression condition = cb.like(join.get("name"), "%" + certificateName + "%");
 
         query.where(condition);
         query.groupBy(candidateRoot);
