@@ -70,11 +70,12 @@ public class UsersResource {
     @DELETE
     public Response removeUsers(@PathParam("cin") Long cin) {
 
-        return Optional.ofNullable(usersService.find(cin))
+        /*return Optional.ofNullable(usersService.find(cin))
                 .map(user -> {
                     usersService.remove(user);
                     return Response.ok().build();
-                }).orElseThrow(NotFoundException::new);
+                }).orElseThrow(NotFoundException::new);*/
+        return disable(cin);
     }
 
     @Path("/{cin}/disable")
