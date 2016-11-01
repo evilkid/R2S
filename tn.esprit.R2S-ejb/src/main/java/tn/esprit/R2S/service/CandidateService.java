@@ -35,7 +35,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
     }
 
     @Override
-    public List<Candidate> findBySkillId(int skillId) {
+    public List<Candidate> findBySkillId(Long skillId) {
         System.out.println(skillId);
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Candidate> c = cb.createQuery(Candidate.class);

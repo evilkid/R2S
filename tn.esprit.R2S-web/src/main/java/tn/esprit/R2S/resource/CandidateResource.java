@@ -32,7 +32,7 @@ public class CandidateResource {
     private ICertificationService certificationService;
 
     @GET
-    public Response getAllCandidates(@QueryParam("skillId") Integer skillId,
+    public Response getAllCandidates(@QueryParam("skillId") Long skillId,
                                      @QueryParam("numDaysExpInf") Integer numDaysExpInf,
                                      @QueryParam("numDaysExpSup") Integer numDaysExpSup,
                                      @QueryParam("certification") String certificationName) {

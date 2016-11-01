@@ -19,7 +19,7 @@ public interface ICandidateService {
 
     List<Candidate> findAll();
 
-    List<Candidate> findBySkillId(int skillId);
+    List<Candidate> findBySkillId(Long skillId);
 
     List<Candidate> findByExperience(int duration);
 

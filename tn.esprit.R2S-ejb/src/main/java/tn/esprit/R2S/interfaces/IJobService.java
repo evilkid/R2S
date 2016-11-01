@@ -1,5 +1,6 @@
 package tn.esprit.R2S.interfaces;
 
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Job;
 import tn.esprit.R2S.util.enums.JobStatus;
 
@@ -27,4 +28,5 @@ public interface IJobService {
 
     List<Job> findBySkill(Long skillId);
 
+    List<Candidate> findCandidates(Long jobId);
 }
