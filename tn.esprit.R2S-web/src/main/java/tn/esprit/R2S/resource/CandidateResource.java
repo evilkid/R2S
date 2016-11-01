@@ -5,10 +5,13 @@ import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.interfaces.ICertificationService;
 import tn.esprit.R2S.interfaces.IJobService;
 import tn.esprit.R2S.model.*;
+import tn.esprit.R2S.resource.util.HeaderUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 
@@ -119,5 +122,15 @@ public class CandidateResource {
         }
 
         return null;
+    }
+
+    @POST
+    public Response registerCandidate(ReferHash referHash, Candidate candidate) throws URISyntaxException {
+
+        candidate.setReferee(referHash.getEmployee());
+        candidateService.create(candidate);
+        return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/candidate/" + candidate.getCin())),
+                "candidateQuizModel", candidate.getCin().toString())
+                .entity(candidate).build();
     }
 }

@@ -117,25 +117,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
         query.select(candidateRoot);
 
         return em.createQuery(query).getResultList();
-        /*
-        String query = "SELECT q FROM Candidate q";
-        Query q = em.createQuery(query);
-        List<Candidate> candidates = q.getResultList();
-        List<Candidate> result = new ArrayList<>();
-
-        try {
-            for (Candidate e : candidates) {
-                if (e.getCertifications().stream().filter(d -> d.getId() == certification.getId()).count() != 0)
-
-                {
-                    result.add(e);
-                }
-            }
-        } catch (Exception v) {
-            v.printStackTrace();
-
-        }
-        return result;*/
     }
+
 
 }
