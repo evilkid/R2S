@@ -2,6 +2,7 @@ package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.ICandidateFieldService;
 import tn.esprit.R2S.interfaces.ICandidateService;
+import tn.esprit.R2S.interfaces.ICertificationService;
 import tn.esprit.R2S.interfaces.IJobService;
 import tn.esprit.R2S.model.*;
 
@@ -24,6 +25,8 @@ public class CandidateResource {
 
     @EJB
     private IJobService jobService;
+    @EJB
+    private ICertificationService certificationService;
 
     @GET
     public List<Candidate> getAllCandidates(@QueryParam("skillId") int skillId) {
@@ -86,5 +89,17 @@ public class CandidateResource {
     public Set<Candidate> getCandidateByExperienceBetweenDurations(@PathParam("duration1") int duration1
             , @PathParam("duration2") int duration2) {
         return candidateService.findByExperienceBetween(duration1, duration2);
+    }
+
+    @GET
+    @Path("/cer/{certificationId}")
+    public List<Candidate> getCandidateByExperienceBetweenDurations(@PathParam("certificationId") long certificationId) {
+
+
+        Certification certification = certificationService.find(certificationId);
+        if (certification != null)
+            return candidateService.findByCertification(certification);
+
+        return null;
     }
 }

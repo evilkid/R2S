@@ -1,6 +1,7 @@
 package tn.esprit.R2S.interfaces;
 
 import tn.esprit.R2S.model.Candidate;
+import tn.esprit.R2S.model.Certification;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -25,4 +26,6 @@ public interface ICandidateService {
     Set<Candidate> findByExperience(int duration);
 
     Set<Candidate> findByExperienceBetween(int duration1, int duration2);
+
+    List<Candidate> findByCertification(Certification certification);
 }

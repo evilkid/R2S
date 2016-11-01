@@ -2,7 +2,6 @@ package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
-import tn.esprit.R2S.interfaces.IQuestionService;
 import tn.esprit.R2S.model.Answer;
 import tn.esprit.R2S.model.CandidateQuizModel;
 import tn.esprit.R2S.model.Question;
@@ -20,10 +19,10 @@ import java.util.stream.Collectors;
 
 public class CandidateQuizModelService extends AbstractService<CandidateQuizModel> implements ICandidateQuizModelService {
 
-    @PersistenceContext(unitName = "R2S_PU")
-    private EntityManager em;
     @EJB
     IAnswerService answerService;
+    @PersistenceContext(unitName = "R2S_PU")
+    private EntityManager em;
 
     public CandidateQuizModelService() {
         super(CandidateQuizModel.class);
@@ -87,4 +86,6 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
         questionNote[0] *= 100 * question.getScore() / totalScore;
         return questionNote[0];
     }
+
+
 }

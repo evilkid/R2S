@@ -2,6 +2,7 @@ package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.model.Candidate;
+import tn.esprit.R2S.model.Certification;
 import tn.esprit.R2S.model.Experience;
 
 import javax.ejb.Stateless;
@@ -106,6 +107,27 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
         }
 
         return candidates;
+    }
+
+    @Override
+    public List<Candidate> findByCertification(Certification certification) {
+        String query = "SELECT q FROM Candidate q";
+        Query q = em.createQuery(query);
+        List<Candidate> candidates = q.getResultList();
+        List<Candidate> result = new ArrayList<>();
+
+        try {
+            for (Candidate e : candidates
+                    ) {
+                if (e.getCertifications().stream().filter(d -> d.getId() == certification.getId()).count() != 0)
+
+                    result.add(e);
+            }
+        } catch (Exception v) {
+            v.printStackTrace();
+
+        }
+        return result;
     }
 
 
