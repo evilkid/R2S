@@ -1,7 +1,9 @@
 package tn.esprit.R2S.interfaces;
 
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.CandidateQuizModel;
 import tn.esprit.R2S.model.Question;
+import tn.esprit.R2S.model.QuizModel;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -24,4 +26,6 @@ public interface ICandidateQuizModelService {
     double calculateSingleQuestionNote(CandidateQuizModel candidateQuizModel, Question question);
 
     Map<CandidateQuizModel, Double> getHistorique();
+
+    List<CandidateQuizModel> getByCandidate(Candidate candidate, double minScore);
 }

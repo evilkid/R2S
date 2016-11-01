@@ -3,6 +3,7 @@ package tn.esprit.R2S.service;
 import tn.esprit.R2S.interfaces.IAnswerService;
 import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
 import tn.esprit.R2S.model.Answer;
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.CandidateQuizModel;
 import tn.esprit.R2S.model.Question;
 
@@ -10,6 +11,8 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,6 +73,23 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
         return scoreQuizMap;
     }
 
+    @Override
+    public List<CandidateQuizModel> getByCandidate(Candidate candidate, double minScore) {
+
+        List<CandidateQuizModel> candidateQuizModels=new ArrayList<>();
+        Map<CandidateQuizModel, Double> historique= getHistorique();
+        for (Map.Entry<CandidateQuizModel, Double> e: historique.entrySet()
+             ) {
+            if ((candidate.getCin()==e.getKey().getCandidate().getCin())&&(e.getValue()>=minScore))
+            {
+                candidateQuizModels.add(e.getKey());
+            }
+
+
+        }
+        return candidateQuizModels;
+    }
+
     public double calculateQuestionNote(Question question, List<Answer> answers, boolean penalty, double totalScore){
         double numberOfGoodAnswers = answerService.findCorrectAnswers(question.getId()).size();
         final double[] questionNote = {0};
@@ -86,6 +106,15 @@ public class CandidateQuizModelService extends AbstractService<CandidateQuizMode
         questionNote[0] *= 100 * question.getScore() / totalScore;
         return questionNote[0];
     }
+
+
+
+
+
+
+
+
+
 
 
 }

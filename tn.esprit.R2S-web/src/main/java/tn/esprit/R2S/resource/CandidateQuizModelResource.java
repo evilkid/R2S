@@ -1,7 +1,9 @@
 package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.ICandidateQuizModelService;
+import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.interfaces.IQuestionService;
+import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.CandidateQuizModel;
 import tn.esprit.R2S.model.Question;
 import tn.esprit.R2S.resource.util.HeaderUtil;
@@ -25,6 +27,8 @@ public class CandidateQuizModelResource {
     private ICandidateQuizModelService candidateQuizModelService;
     @EJB
     private IQuestionService questionService;
+    @EJB
+    private ICandidateService candidateService;
 
     @POST
     public Response createCandidateQuizModel(CandidateQuizModel candidateQuizModel) throws URISyntaxException {
@@ -93,4 +97,15 @@ public class CandidateQuizModelResource {
         return candidateQuizModelService.getHistorique();
     }
 
+    @GET
+    @Path("/{candidateId}/{minScore}")
+    public List<CandidateQuizModel> getByCandidate(long candidateId, double minScore){
+
+
+        Candidate candidate=candidateService.find(candidateId);
+        if (candidate!=null)
+            return candidateQuizModelService.getByCandidate(candidate,minScore);
+
+        return null;
+    }
 }
