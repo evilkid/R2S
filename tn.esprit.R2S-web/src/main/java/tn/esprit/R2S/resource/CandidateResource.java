@@ -28,8 +28,25 @@ public class CandidateResource {
     private ICertificationService certificationService;
 
     @GET
-    public List<Candidate> getAllCandidates(@QueryParam("skillId") int skillId) {
-        return candidateService.findBySkillId(skillId);
+    public Response getAllCandidates(@QueryParam("skillId") Integer skillId,
+                                     @QueryParam("numDaysExpInf") Integer numDaysExpInf,
+                                     @QueryParam("numDaysExpSup") Integer numDaysExpSup) {
+
+        List<Candidate> result = null;
+
+        if (skillId != null) {
+            result = candidateService.findBySkillId(skillId);
+        }
+
+        if (numDaysExpInf != null && numDaysExpSup != null) {
+            result = candidateService.findByExperienceBetween(numDaysExpInf, numDaysExpSup);
+        }
+
+        if (numDaysExpInf != null) {
+            result = candidateService.findByExperience(numDaysExpInf);
+        }
+
+        return Response.ok(result).build();
     }
 
     @GET

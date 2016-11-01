@@ -64,8 +64,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
     @Override
     public List<Candidate> findByExperience(int duration) {
 
-
-        return findByExperience(duration);
+        return findByExperience(duration, null);
 
         /*CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Candidate> c = cb.createQuery(Candidate.class);
@@ -184,8 +183,7 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
         List<Candidate> result = new ArrayList<>();
 
         try {
-            for (Candidate e : candidates
-                    ) {
+            for (Candidate e : candidates) {
                 if (e.getCertifications().stream().filter(d -> d.getId() == certification.getId()).count() != 0)
 
                 {
