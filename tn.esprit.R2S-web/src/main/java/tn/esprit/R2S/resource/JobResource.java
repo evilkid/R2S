@@ -100,6 +100,7 @@ public class JobResource {
                 .orElseThrow(NotFoundException::new);
     }
 
+    //notification
     @Path("/{id}/notify")
     @POST
     public Response addNotification(Notification notification, @PathParam("id") Long id) {
@@ -132,6 +133,13 @@ public class JobResource {
         }
 
         return jobService.findAll();
+    }
+
+    //candidates
+    @Path("/{id}/candidates")
+    @GET
+    public Response findCandidateWithJobSkills(@PathParam("id") Long jobId) {
+        return Response.ok(jobService.findCandidates(jobId)).build();
     }
 
     @Path("/{id}")

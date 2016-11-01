@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class Interview implements Serializable {
@@ -70,4 +70,23 @@ public class Interview implements Serializable {
         this.recruitmentManager = recruitmentManager;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Interview interview = (Interview) o;
+
+        return id.equals(interview.id);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

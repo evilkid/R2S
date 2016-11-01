@@ -5,6 +5,7 @@ package tn.esprit.R2S.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -12,10 +13,11 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
-@JsonIgnoreProperties({"certifications", "educations", "experiences", "jobs", "interviews", "candidateQuizModels", "candidateSkills"})
+@JsonIgnoreProperties({"certifications", "educations", "experiences", "jobs", "interviews", "candidateQuizModels",
+        "candidateSkills", "candidateFieldValues"})
 public class Candidate extends Users implements Serializable {
 
     @ManyToOne(targetEntity = Employee.class)
@@ -30,7 +32,7 @@ public class Candidate extends Users implements Serializable {
     @OneToMany(targetEntity = Experience.class, mappedBy = "candidate")
     private List<Experience> experiences;
 
-    @OneToMany(targetEntity = CandidateJob.class, mappedBy = "candidate")
+    @OneToMany(targetEntity = CandidateJob.class, mappedBy = "candidate", cascade = CascadeType.ALL)
     private List<CandidateJob> jobs;
 
     @OneToMany(targetEntity = Interview.class, mappedBy = "candidate")
@@ -116,4 +118,6 @@ public class Candidate extends Users implements Serializable {
     public void setCandidateFieldValues(List<CandidateFieldValue> candidateFieldValues) {
         this.candidateFieldValues = candidateFieldValues;
     }
+
+
 }

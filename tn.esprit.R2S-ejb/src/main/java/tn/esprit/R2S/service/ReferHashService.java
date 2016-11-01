@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 import java.util.Date;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 @Stateless
 public class ReferHashService implements IReferHashService {

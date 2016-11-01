@@ -7,7 +7,6 @@ import tn.esprit.R2S.model.Users;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -41,8 +40,8 @@ public class UsersService extends AbstractService<Users> implements IUsersServic
                         cb.equal(emp.get("password"), password));
 
         try {
-            return em.createQuery(c).getSingleResult();
-        } catch (NoResultException e) {
+            return (Users) em.createQuery(c).getSingleResult();
+        } catch (Exception e) {
             return null;
         }
     }

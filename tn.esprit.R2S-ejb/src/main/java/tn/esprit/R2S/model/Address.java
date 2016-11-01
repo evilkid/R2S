@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Embeddable
 public class Address implements Serializable {

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class ChiefHumanResourcesOfficer extends Users implements Serializable {

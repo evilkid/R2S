@@ -6,9 +6,10 @@ package tn.esprit.R2S.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class Experience implements Serializable {
@@ -104,4 +105,18 @@ public class Experience implements Serializable {
         this.candidate = candidate;
     }
 
+    @Transient
+    public long getDifferenceInDays() {
+        long diffInMillies = getDateEnd().getTime() - getDateStart().getTime();
+        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+
+    }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                '}';
+    }
 }

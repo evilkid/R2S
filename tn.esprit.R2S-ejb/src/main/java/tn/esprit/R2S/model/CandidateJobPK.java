@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Embeddable
 public class CandidateJobPK implements Serializable {
@@ -19,6 +19,11 @@ public class CandidateJobPK implements Serializable {
 
     public CandidateJobPK() {
 
+    }
+
+    public CandidateJobPK(Long job, Long candidate) {
+        this.job = job;
+        this.candidate = candidate;
     }
 
     public Long getJob() {

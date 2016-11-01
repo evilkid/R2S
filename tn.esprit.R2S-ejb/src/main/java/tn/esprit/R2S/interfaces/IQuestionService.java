@@ -5,7 +5,7 @@ import tn.esprit.R2S.model.Question;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/18/2016.
+ * Created by EvilKids on 10/18/2016.
  */
 public interface IQuestionService {
     void create(Question question);

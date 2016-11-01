@@ -15,7 +15,15 @@ public interface ICandidateService {
 
     Candidate find(Object id);
 
+    Candidate findInitializeJobs(Object id);
+
     List<Candidate> findAll();
 
-    List<Candidate> findBySkillId(int skillId);
+    List<Candidate> findBySkillId(Long skillId);
+
+    List<Candidate> findByExperience(int duration);
+
+    List<Candidate> findByExperienceBetween(int duration1, int duration2);
+
+    List<Candidate> findByCertification(String certificateName);
 }

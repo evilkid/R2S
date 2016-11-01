@@ -23,4 +23,10 @@ public class RecruitmentManagerService extends AbstractService<RecruitmentManage
         return em;
     }
 
+    @Override
+    public RecruitmentManager findInitializeInterviews(Object id) {
+        RecruitmentManager recruitmentManager = find(id);
+        recruitmentManager.getInterviews().size();
+        return recruitmentManager;
+    }
 }

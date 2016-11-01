@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 @MessageDriven(name = "emailServiceEJB", mappedName = "emailServiceEJB", activationConfig = {
         @ActivationConfigProperty(propertyName = "messagingType", propertyValue = "javax.jms.MessageListener"),

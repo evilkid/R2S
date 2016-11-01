@@ -3,11 +3,13 @@ package tn.esprit.R2S.interfaces;
 import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Users;
 
+import javax.ejb.Remote;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/18/2016.
+ * Created by EvilKids on 10/18/2016.
  */
+@Remote //just for tests
 public interface IUsersService {
     void create(Users users);
 

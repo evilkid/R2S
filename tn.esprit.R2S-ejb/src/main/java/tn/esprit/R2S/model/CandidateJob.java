@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 public class CandidateJob implements Serializable {
@@ -74,4 +74,27 @@ public class CandidateJob implements Serializable {
         this.candidate = candidate;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        CandidateJob that = (CandidateJob) o;
+
+        if (job != null ? !job.equals(that.job) : that.job != null) {
+            return false;
+        }
+        return candidate != null ? candidate.equals(that.candidate) : that.candidate == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return candidateJob.hashCode();
+    }
 }

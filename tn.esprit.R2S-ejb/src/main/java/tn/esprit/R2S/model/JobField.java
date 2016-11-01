@@ -3,13 +3,14 @@ package tn.esprit.R2S.model;
 import tn.esprit.R2S.util.enums.FieldType;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by evilkid on 10/30/2016.
+ * Created by EvilKids on 10/30/2016.
  */
 @Entity
-public class JobField {
+public class JobField implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

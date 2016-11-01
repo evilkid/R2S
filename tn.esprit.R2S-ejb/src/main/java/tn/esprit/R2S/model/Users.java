@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author EvilKids
+ * @author EvilKidss
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -143,4 +143,23 @@ public abstract class Users implements Serializable {
         this.address = address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Users users = (Users) o;
+
+        return cin.equals(users.cin);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return cin.hashCode();
+    }
 }
