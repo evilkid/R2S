@@ -28,6 +28,7 @@ public class QuizModelResource {
                 "quizModel", quizModel.getId().toString())
                 .entity(quizModel).build();
     }
+
     @PUT
     public Response updateQuizModel(QuizModel quizModel) throws URISyntaxException {
 
@@ -42,6 +43,7 @@ public class QuizModelResource {
         List<QuizModel> quizModels = quizModelService.findAll();
         return quizModels;
     }
+
     @Path("/{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)

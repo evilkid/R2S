@@ -74,14 +74,14 @@ public class CandidateQuizModelResource {
         return HeaderUtil.createEntityDeletionAlert(Response.ok(), "candidateQuizModel", id.toString()).build();
     }
 
-    @Path("/score/{id}")
+    @Path("/{id}/score")
     @GET
     public double calculateScore(@PathParam("id") Long id) {
         CandidateQuizModel candidateQuizModel = candidateQuizModelService.find(id);
         return candidateQuizModelService.calculateScore(candidateQuizModel);
     }
 
-    @Path("/score/{idCandidateQuiz}/{idQuestion}")
+    @Path("/{idCandidateQuiz}/score/{idQuestion}")
     @GET
     public double getSingleQuestionNote(@PathParam("idCandidateQuiz") Long idCandidateQuizModel,
                                         @PathParam("idQuestion") Long idQuestion) {

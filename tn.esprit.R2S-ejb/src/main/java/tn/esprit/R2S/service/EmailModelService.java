@@ -92,7 +92,7 @@ public class EmailModelService extends AbstractService<EmailModel> implements IE
     }
 
     @Override
-    public JsonObjectBuilder getVariables() {
+    public String getVariables() {
         JsonObjectBuilder variables = Json.createObjectBuilder();
 
         Field[] user = Users.class.getDeclaredFields();
@@ -154,7 +154,7 @@ public class EmailModelService extends AbstractService<EmailModel> implements IE
 
         //sum up
         variables.add("Job", jobObjectBuilder.build());
-        return variables;
+        return variables.build().toString();
     }
 
     private String parseEmail(EmailModel emailModel, Candidate candidate, Job job) throws Exception {

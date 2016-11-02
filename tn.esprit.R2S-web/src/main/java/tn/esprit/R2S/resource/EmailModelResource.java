@@ -5,7 +5,6 @@ import tn.esprit.R2S.model.EmailModel;
 
 import javax.ejb.EJB;
 import javax.jms.JMSException;
-import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.net.URI;
@@ -39,8 +38,9 @@ public class EmailModelResource {
     public Response sendEmail(@PathParam("email-model-id") Long emailModelId,
                               @PathParam("candidate-cin") Long cin,
                               @PathParam("job-id") Long jobId) throws JMSException {
-        sendEmail(emailModelId, cin, jobId);
-        return null;
+        emailModelService.sendEmail(emailModelId, cin, jobId);
+
+        return Response.ok().build();
     }
 
     @POST
@@ -91,8 +91,8 @@ public class EmailModelResource {
     @Path("/variables")
     @GET
     public Response getVariables() {
-        JsonObjectBuilder variables = emailModelService.getVariables();
-        return Response.ok(variables.build()).build();
+        String variables = emailModelService.getVariables();
+        return Response.ok(variables).build();
     }
 
 }

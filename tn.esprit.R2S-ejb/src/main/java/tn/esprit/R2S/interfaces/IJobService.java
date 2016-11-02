@@ -4,11 +4,13 @@ import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Job;
 import tn.esprit.R2S.util.enums.JobStatus;
 
+import javax.ejb.Remote;
 import java.util.List;
 
 /**
  * Created by EvilKids on 10/18/2016.
  */
+@Remote
 public interface IJobService {
     void create(Job job);
 

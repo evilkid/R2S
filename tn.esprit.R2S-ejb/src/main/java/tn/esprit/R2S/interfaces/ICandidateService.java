@@ -2,10 +2,10 @@ package tn.esprit.R2S.interfaces;
 
 import tn.esprit.R2S.model.Candidate;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 import java.util.List;
 
-@Local
+@Remote
 public interface ICandidateService {
     void create(Candidate candidate);
 
