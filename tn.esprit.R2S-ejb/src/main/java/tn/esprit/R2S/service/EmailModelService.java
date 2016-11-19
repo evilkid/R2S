@@ -157,6 +157,32 @@ public class EmailModelService extends AbstractService<EmailModel> implements IE
         return variables.build().toString();
     }
 
+    @Override
+    public String parseEmail(Long emailModelId, Long cin, Long jobId) {
+        EmailModel emailModel = emailModelService.find(emailModelId);
+        if (emailModel == null) {
+            throw new NotFoundException("Email model not found");
+        }
+
+        Candidate candidate = candidateService.find(cin);
+        if (candidate == null) {
+            throw new NotFoundException("Candidate not found");
+        }
+
+        Job job = jobService.find(jobId);
+        if (job == null) {
+            throw new NotFoundException("Job not found");
+        }
+
+
+        try {
+            return parseEmail(emailModel, candidate, job);
+        } catch (Exception e) {
+            return "Error while parsing";
+        }
+    }
+
+
     private String parseEmail(EmailModel emailModel, Candidate candidate, Job job) throws Exception {
 
         String content = emailModel.getContent();

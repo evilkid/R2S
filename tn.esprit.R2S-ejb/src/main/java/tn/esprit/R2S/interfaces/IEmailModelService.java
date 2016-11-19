@@ -21,4 +21,7 @@ public interface IEmailModelService {
     void sendEmail(Long emailModelId, Long cin, Long jobId);
 
     String getVariables();
+
+    String parseEmail(Long emailModelId, Long cin, Long jobId);
+
 }

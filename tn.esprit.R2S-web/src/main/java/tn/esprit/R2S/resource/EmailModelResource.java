@@ -43,6 +43,14 @@ public class EmailModelResource {
         return Response.ok().build();
     }
 
+    @GET
+    @Path("/parse/{email-model-id}/{candidate-cin}/{job-id}")
+    public Response parseEmail(@PathParam("email-model-id") Long emailModelId,
+                               @PathParam("candidate-cin") Long cin,
+                               @PathParam("job-id") Long jobId) throws JMSException {
+        return Response.ok(emailModelService.parseEmail(emailModelId, cin, jobId)).build();
+    }
+
     @POST
     public Response createEmailModel(EmailModel emailModel) throws URISyntaxException {
 
