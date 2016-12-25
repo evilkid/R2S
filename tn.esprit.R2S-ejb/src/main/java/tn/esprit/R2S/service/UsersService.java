@@ -1,5 +1,6 @@
 package tn.esprit.R2S.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import tn.esprit.R2S.interfaces.IUsersService;
 import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Employee;
@@ -32,15 +33,16 @@ public class UsersService extends AbstractService<Users> implements IUsersServic
     @Override
     public Users login(String username, String password) {
         System.out.println("user: " + username);
+        System.out.println("password:" + DigestUtils.md5Hex(password));
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Users> c = cb.createQuery(Users.class);
         Root<Users> emp = c.from(Users.class);
         c.select(emp)
                 .where(cb.equal(emp.get("username"), username),
-                        cb.equal(emp.get("password"), password));
+                        cb.equal(emp.get("password"), DigestUtils.md5Hex(password)));
 
         try {
-            return (Users) em.createQuery(c).getSingleResult();
+            return em.createQuery(c).getSingleResult();
         } catch (Exception e) {
             return null;
         }
