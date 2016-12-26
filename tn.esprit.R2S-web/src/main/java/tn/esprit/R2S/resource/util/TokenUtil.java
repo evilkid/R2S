@@ -6,6 +6,7 @@ import tn.esprit.R2S.model.*;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.core.Cookie;
 import java.security.Key;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +33,10 @@ public class TokenUtil {
         claims.put("firstname", user.getFirstname());
         claims.put("lastname", user.getLastname());
 
+
         return Jwts.builder()
                 .setSubject(user.getUsername())
+                .setExpiration(new Date(new Date().getTime() + 3600))
                 .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
