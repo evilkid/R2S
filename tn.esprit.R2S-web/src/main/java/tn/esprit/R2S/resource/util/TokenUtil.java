@@ -32,11 +32,10 @@ public class TokenUtil {
 
         claims.put("firstname", user.getFirstname());
         claims.put("lastname", user.getLastname());
-
+        claims.put("exp", new Date(new Date().getTime() + 3600));
 
         return Jwts.builder()
                 .setSubject(user.getUsername())
-                .setExpiration(new Date(new Date().getTime() + 3600))
                 .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
