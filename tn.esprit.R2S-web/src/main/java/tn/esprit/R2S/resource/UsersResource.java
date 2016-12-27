@@ -1,16 +1,11 @@
 package tn.esprit.R2S.resource;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.Users;
 import tn.esprit.R2S.resource.util.Roles;
-import tn.esprit.R2S.resource.util.Secured;
-import tn.esprit.R2S.resource.util.TokenUtil;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Cookie;
 import javax.ws.rs.core.Response;
 import java.util.Optional;
 
@@ -92,14 +87,4 @@ public class UsersResource {
         return Response.ok().build();
     }
 
-    @Path("/referred")
-    @GET
-    @Secured(Roles.EMPLOYEE)
-    public Response getReferred(@CookieParam("access_token") Cookie cookie) {
-        Jws<Claims> claims = TokenUtil.getClaims(cookie, tokenService.getKey());
-
-        Long cin = Long.parseLong((String) claims.getBody().get("cin"));
-
-        return Response.ok(usersService.getReferred(cin)).build();
-    }
 }

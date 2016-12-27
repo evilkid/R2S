@@ -34,17 +34,18 @@ public class AccountResource {
 
         System.out.println("User found, adding coockie");
 
+
         return Optional.ofNullable(user)
                 .map(u ->
                         Response.ok(u).cookie(
                                 new NewCookie("access_token",
                                         TokenUtil.getToken(user, tokenService.getKey()),
-                                        "/tn.esprit.R2S-web/resources/api/",
+                                        "/",
                                         "localhost",
                                         "",
-                                        3600,
-                                        true,
-                                        true))
+                                        36000,
+                                        false,
+                                        false))
                                 .build()
                 )
                 .orElseThrow(NotFoundException::new);

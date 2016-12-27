@@ -30,7 +30,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext containerRequestContext) throws IOException {
 
-        System.out.println(containerRequestContext.getCookies());
+        System.out.println("here " + containerRequestContext.getCookies());
 
         if (containerRequestContext.getCookies().containsKey("access_token")) {
             String token = containerRequestContext.getCookies().get("access_token").getValue();
@@ -44,6 +44,8 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             } catch (JwtException je) {
                 throw new NotAuthorizedException("Token error");
             }
+        } else {
+            throw new NotAuthorizedException("Token not found");
         }
     }
 

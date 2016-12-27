@@ -6,6 +6,8 @@ import tn.esprit.R2S.interfaces.ICertificationService;
 import tn.esprit.R2S.interfaces.IJobService;
 import tn.esprit.R2S.model.*;
 import tn.esprit.R2S.resource.util.HeaderUtil;
+import tn.esprit.R2S.resource.util.Roles;
+import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -55,6 +57,7 @@ public class CandidateResource {
 
     @GET
     @Path("form")
+    @Secured(Roles.CANDIDATE)
     public List<CandidateField> getCandidateField() {
         return candidateFieldService.findAll();
     }
