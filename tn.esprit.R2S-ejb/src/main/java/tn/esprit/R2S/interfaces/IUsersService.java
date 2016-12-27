@@ -28,4 +28,6 @@ public interface IUsersService {
     void enable(Long cin);
 
     List<Candidate> getReferred(Long cin);
+
+    Double getRewardPoints(Long cin);
 }

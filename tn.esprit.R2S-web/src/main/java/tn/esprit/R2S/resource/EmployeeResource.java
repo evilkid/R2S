@@ -58,7 +58,7 @@ public class EmployeeResource {
 
         Long cin = Long.parseLong((String) claims.getBody().get("cin"));
 
-        return Response.ok(usersService.getRewardPoints(cin)).build();
+        return Response.ok("{\"points\": " + usersService.getRewardPoints(cin) + "}").build();
     }
 
     @GET

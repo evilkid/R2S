@@ -9,6 +9,7 @@ import tn.esprit.R2S.model.Users;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -69,5 +70,20 @@ public class UsersService extends AbstractService<Users> implements IUsersServic
         employee.getReferredCandidates().size();
 
         return employee.getReferredCandidates();
+    }
+
+
+    @Override
+    public Double getRewardPoints(Long cin) {
+        //TODO: Convert to CriteriaAPI
+        Query query = em.createNativeQuery("SELECT sum(r.points) " +
+                "from users u " +
+                "join candidatejob c on u.cin = c.candidate_cin " +
+                "join reward r on c.progress = r.progress and c.job_id = r.job_id " +
+                "where u.referee_cin = ?");
+
+        query.setParameter(1, cin);
+
+        return (Double) query.getSingleResult();
     }
 }
