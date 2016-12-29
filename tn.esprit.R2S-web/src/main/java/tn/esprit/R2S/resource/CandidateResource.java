@@ -16,6 +16,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Path("/api/candidate")
 public class CandidateResource {
@@ -125,6 +126,16 @@ public class CandidateResource {
         }
 
         return null;
+    }
+
+    @GET
+    @Path("{id}/jobs")
+    public Response getCandidateJobs(@PathParam("id") Long id) {
+        Candidate candidate = candidateService.findInitializeJobs(id);
+
+        return Optional.ofNullable(candidate).map(cand -> Response.ok(cand.getJobs()).build())
+                .orElseThrow(NotFoundException::new);
+
     }
 
     @POST
