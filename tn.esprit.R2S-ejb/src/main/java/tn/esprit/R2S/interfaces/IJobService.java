@@ -2,6 +2,7 @@ package tn.esprit.R2S.interfaces;
 
 import tn.esprit.R2S.model.Candidate;
 import tn.esprit.R2S.model.Job;
+import tn.esprit.R2S.model.JobFieldValue;
 import tn.esprit.R2S.util.enums.JobStatus;
 
 import javax.ejb.Remote;
@@ -29,6 +30,8 @@ public interface IJobService {
     List<Job> findByStatus(JobStatus jobStatus);
 
     List<Job> findBySkill(Long skillId);
+
+    List<JobFieldValue> getJobFieldValue(Long jobId);
 
     List<Candidate> findCandidates(Long jobId);
 }

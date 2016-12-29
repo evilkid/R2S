@@ -6,7 +6,6 @@ package tn.esprit.R2S.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * @author EvilKidss
@@ -39,8 +38,8 @@ public class Notification implements Serializable {
         this.id = id;
     }
 
-    public Optional<Date> getDate() {
-        return Optional.ofNullable(this.date);
+    public Date getDate() {
+        return this.date;
     }
 
     public void setDate(Date date) {

@@ -1,5 +1,6 @@
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import tn.esprit.R2S.util.enums.FieldType;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.List;
  * Created by EvilKids on 10/30/2016.
  */
 @Entity
+@JsonIgnoreProperties("jobFieldValues")
 public class JobField implements Serializable {
 
     @Id

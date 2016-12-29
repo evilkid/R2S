@@ -6,6 +6,7 @@ import tn.esprit.R2S.util.enums.JobStatus;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -113,6 +114,19 @@ public class JobResource {
                 .orElseThrow(NotFoundException::new);
     }
 
+
+    @Path("/{id}/fields")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getExtraFields(@PathParam("id") Long id) {
+        return Optional.ofNullable(jobService.getJobFieldValue(id))
+                .map(jobFieldValues ->
+                        Response.ok(jobFieldValues).build()
+                )
+                .orElseThrow(NotFoundException::new);
+    }
+
+
     @PUT
     public Response updateJob(Job job) {
         jobService.edit(job);
@@ -168,9 +182,9 @@ public class JobResource {
     }
 
     @GET
-    @Path("generate-link/{job-id}/{employee-id}")
+    @Path("{id}/generate-link/{employee-id}")
     //@Secured(Roles.EMPLOYEE)
-    public Response generateLink(@PathParam("job-id") Long jobId, @PathParam("employee-id") Long employeeId) {
+    public Response generateLink(@PathParam("id") Long jobId, @PathParam("employee-id") Long employeeId) {
 
         Job job = jobService.find(jobId);
         if (job == null) {
@@ -183,8 +197,6 @@ public class JobResource {
         }
 
         ReferHash referHash = referHashService.generateHash(job, employee);
-
-        System.out.println(referHash);
 
         return Response.ok(referHash).build();
     }

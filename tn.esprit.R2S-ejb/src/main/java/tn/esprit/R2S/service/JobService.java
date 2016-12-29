@@ -2,10 +2,7 @@ package tn.esprit.R2S.service;
 
 import tn.esprit.R2S.interfaces.ICandidateService;
 import tn.esprit.R2S.interfaces.IJobService;
-import tn.esprit.R2S.model.Candidate;
-import tn.esprit.R2S.model.CandidateSkill;
-import tn.esprit.R2S.model.Experience;
-import tn.esprit.R2S.model.Job;
+import tn.esprit.R2S.model.*;
 import tn.esprit.R2S.util.enums.JobStatus;
 
 import javax.ejb.EJB;
@@ -78,6 +75,14 @@ public class JobService extends AbstractService<Job> implements IJobService {
         } catch (NoResultException e) {
             return null;
         }
+    }
+
+    @Override
+    public List<JobFieldValue> getJobFieldValue(Long jobId) {
+        Job job = find(jobId);
+        job.getJobFieldValues().size();
+
+        return find(jobId).getJobFieldValues();
     }
 
     @Override

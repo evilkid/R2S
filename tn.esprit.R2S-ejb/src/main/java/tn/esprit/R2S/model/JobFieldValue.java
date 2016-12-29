@@ -1,5 +1,7 @@
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -7,6 +9,7 @@ import java.io.Serializable;
  * Created by EvilKids on 10/30/2016.
  */
 @Entity
+@JsonIgnoreProperties("job")
 public class JobFieldValue implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

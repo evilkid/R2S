@@ -45,7 +45,7 @@ public class Job implements Serializable {
     @ManyToMany(targetEntity = Skill.class, mappedBy = "jobs", cascade = CascadeType.ALL)
     private List<Skill> skills;
 
-    @OneToMany(targetEntity = JobFieldValue.class, mappedBy = "jobField")
+    @OneToMany(targetEntity = JobFieldValue.class, mappedBy = "job")
     private List<JobFieldValue> jobFieldValues;
 
     public Long getId() {
