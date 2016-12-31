@@ -50,6 +50,27 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
     }
 
     @Override
+    public Candidate findInitializeExperiences(Object id) {
+        Candidate candidate = find(id);
+        candidate.getExperiences().size();
+        return candidate;
+    }
+
+    @Override
+    public Candidate findInitializeEducations(Object id) {
+        Candidate candidate = find(id);
+        candidate.getEducations().size();
+        return candidate;
+    }
+
+    @Override
+    public Candidate findInitializeSkills(Object id) {
+        Candidate candidate = find(id);
+        candidate.getCandidateSkills().size();
+        return candidate;
+    }
+
+    @Override
     public List<Candidate> findBySkillId(Long skillId) {
         System.out.println(skillId);
         CriteriaBuilder cb = em.getCriteriaBuilder();

@@ -3,6 +3,8 @@
  */
 package tn.esprit.R2S.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,6 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author EvilKidss
  */
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Experience implements Serializable {
 
     @Id
@@ -107,9 +110,12 @@ public class Experience implements Serializable {
 
     @Transient
     public long getDifferenceInDays() {
-        long diffInMillies = getDateEnd().getTime() - getDateStart().getTime();
-        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
-
+        if (getDateStart() != null && getDateEnd() != null) {
+            long diffInMillies = getDateEnd().getTime() - getDateStart().getTime();
+            return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        } else {
+            return 0;
+        }
     }
 
     @Override

@@ -158,6 +158,16 @@ public class CandidateResource {
 
     }
 
+    @GET
+    @Path("{id}/experiences")
+    public Response getCandidateExperiences(@PathParam("id") Long id) {
+        Candidate candidate = candidateService.findInitializeExperiences(id);
+
+        return Optional.ofNullable(candidate).map(cand -> Response.ok(cand.getExperiences()).build())
+                .orElseThrow(NotFoundException::new);
+
+    }
+
     @POST
     public Response registerCandidate(ReferHash referHash, Candidate candidate) throws URISyntaxException {
 
