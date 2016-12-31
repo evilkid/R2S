@@ -21,6 +21,8 @@ public interface ICandidateService {
 
     Candidate findInitializeInterviews(Object id);
 
+    Candidate findInitializeCertifications(Object id);
+
     List<Candidate> findBySkillId(Long skillId);
 
     List<Candidate> findByExperience(int duration);

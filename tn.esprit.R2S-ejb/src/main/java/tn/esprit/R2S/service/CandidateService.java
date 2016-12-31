@@ -41,6 +41,14 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
         return candidate;
     }
 
+
+    @Override
+    public Candidate findInitializeCertifications(Object id) {
+        Candidate candidate = find(id);
+        candidate.getCertifications().size();
+        return candidate;
+    }
+
     @Override
     public List<Candidate> findBySkillId(Long skillId) {
         System.out.println(skillId);
