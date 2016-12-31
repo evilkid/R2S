@@ -29,6 +29,14 @@ public class CandidateSkill implements Serializable {
     @ManyToOne(targetEntity = Skill.class)
     private Skill skill;
 
+
+    public CandidateSkill() {
+    }
+
+    public CandidateSkill(CandidateSkillPK candidateSkillPK) {
+        this.candidateSkillPK = candidateSkillPK;
+    }
+
     public CandidateSkillPK getCandidateSkillPK() {
         return this.candidateSkillPK;
     }

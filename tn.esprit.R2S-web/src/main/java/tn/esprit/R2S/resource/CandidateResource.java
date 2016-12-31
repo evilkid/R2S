@@ -1,9 +1,6 @@
 package tn.esprit.R2S.resource;
 
-import tn.esprit.R2S.interfaces.ICandidateFieldService;
-import tn.esprit.R2S.interfaces.ICandidateService;
-import tn.esprit.R2S.interfaces.ICertificationService;
-import tn.esprit.R2S.interfaces.IJobService;
+import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.*;
 import tn.esprit.R2S.resource.util.HeaderUtil;
 import tn.esprit.R2S.resource.util.Roles;
@@ -33,6 +30,12 @@ public class CandidateResource {
 
     @EJB
     private ICertificationService certificationService;
+
+    @EJB
+    private ISkillService skillService;
+
+    @EJB
+    private ICandidateSkillService candidateSkillService;
 
     @GET
     public Response getAllCandidates(@QueryParam("skillId") Long skillId,
@@ -166,6 +169,46 @@ public class CandidateResource {
         return Optional.ofNullable(candidate).map(cand -> Response.ok(cand.getExperiences()).build())
                 .orElseThrow(NotFoundException::new);
 
+    }
+
+    @GET
+    @Path("{id}/skills")
+    public Response getCandidateSkills(@PathParam("id") Long id) {
+        Candidate candidate = candidateService.findInitializeSkills(id);
+
+        return Optional.ofNullable(candidate).map(cand -> Response.ok(cand.getCandidateSkills()).build())
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @POST
+    @Path("{id}/skills")
+    public Response candidateAddSkill(@PathParam("id") Long id, CandidateSkill candidateSkill) {
+
+        System.out.println(candidateSkill);
+
+        candidateSkillService.edit(candidateSkill);
+
+        return Response.ok().build();
+    }
+
+    @DELETE
+    @Path("{id}/skills/{skill-id}")
+    public Response candidateDeleteSkill(@PathParam("id") Long candidateId, @PathParam("skill-id") Long skillId) {
+
+        Candidate candidate = candidateService.find(candidateId);
+        Skill skill = skillService.find(skillId);
+
+        if (candidate == null) {
+            throw new NotFoundException("Candidate not found");
+        }
+
+        if (skill == null) {
+            throw new NotFoundException("Not not found");
+        }
+
+        candidateSkillService.remove(new CandidateSkill(new CandidateSkillPK(candidateId, skillId)));
+
+        return Response.ok().build();
     }
 
     @POST

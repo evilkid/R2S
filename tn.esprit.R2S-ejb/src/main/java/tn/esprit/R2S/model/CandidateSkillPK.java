@@ -17,6 +17,11 @@ public class CandidateSkillPK implements Serializable {
 
     private Long skill;
 
+    public CandidateSkillPK(Long candidate, Long skill) {
+        this.candidate = candidate;
+        this.skill = skill;
+    }
+
     public CandidateSkillPK() {
 
     }
