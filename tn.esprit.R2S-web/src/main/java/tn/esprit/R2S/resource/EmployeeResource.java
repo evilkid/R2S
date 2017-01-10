@@ -87,7 +87,7 @@ public class EmployeeResource {
                             .append(", with a salary of ")
                             .append(referHash.getJob().getSalary())
                             .append(", we would love to have you with us, if you are interested you can register at this link: ")
-                            .append("www.r2s.com/register/")
+                            .append("http://localhost:3000/register?hash=")
                             .append(referHash.getHash());
 
                     notifyCandidate(candidateEmail, "Job Offer", contentBuilder.toString());
