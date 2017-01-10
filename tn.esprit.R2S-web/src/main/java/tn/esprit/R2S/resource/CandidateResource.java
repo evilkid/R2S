@@ -2,15 +2,12 @@ package tn.esprit.R2S.resource;
 
 import tn.esprit.R2S.interfaces.*;
 import tn.esprit.R2S.model.*;
-import tn.esprit.R2S.resource.util.HeaderUtil;
 import tn.esprit.R2S.resource.util.Roles;
 import tn.esprit.R2S.resource.util.Secured;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -29,6 +26,9 @@ public class CandidateResource {
     private IJobService jobService;
 
     @EJB
+    private ICandidateJobService candidateJobService;
+
+    @EJB
     private ICertificationService certificationService;
 
     @EJB
@@ -36,6 +36,9 @@ public class CandidateResource {
 
     @EJB
     private ICandidateSkillService candidateSkillService;
+
+    @EJB
+    private IReferHashService referHashService;
 
     @GET
     public Response getAllCandidates(@QueryParam("skillId") Long skillId,
@@ -212,12 +215,18 @@ public class CandidateResource {
     }
 
     @POST
-    public Response registerCandidate(ReferHash referHash, Candidate candidate) throws URISyntaxException {
+    @Path("/register/{hash}")
+    public Response registerCandidate(@PathParam("hash") String hash, Candidate candidate) {
 
-        candidate.setReferee(referHash.getEmployee());
-        candidateService.create(candidate);
-        return HeaderUtil.createEntityCreationAlert(Response.created(new URI("/resources/api/candidate/" + candidate.getCin())),
-                "candidateQuizModel", candidate.getCin().toString())
-                .entity(candidate).build();
+        candidateService.register(hash, candidate);
+        return Response.status(Response.Status.CREATED).build();
+    }
+
+    @GET
+    @Path("/refered/{hash}")
+    public Response getHashInfo(@PathParam("hash") String hash) {
+        return Optional.ofNullable(referHashService.findByHash(hash))
+                .map(hashInfo -> Response.ok(hashInfo).build())
+                .orElseThrow(NotFoundException::new);
     }
 }

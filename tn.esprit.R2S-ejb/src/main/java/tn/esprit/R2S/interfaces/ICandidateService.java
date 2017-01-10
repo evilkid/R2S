@@ -15,6 +15,8 @@ public interface ICandidateService {
 
     Candidate find(Object id);
 
+    void register(String hash, Candidate candidate);
+
     Candidate findInitializeJobs(Object id);
 
     List<Candidate> findAll();

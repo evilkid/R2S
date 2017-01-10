@@ -1,13 +1,20 @@
 package tn.esprit.R2S.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import tn.esprit.R2S.interfaces.ICandidateJobService;
 import tn.esprit.R2S.interfaces.ICandidateService;
-import tn.esprit.R2S.model.Candidate;
+import tn.esprit.R2S.interfaces.IReferHashService;
+import tn.esprit.R2S.model.*;
+import tn.esprit.R2S.util.enums.Progress;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
+import javax.ws.rs.NotFoundException;
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -17,6 +24,12 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
     @PersistenceContext(unitName = "R2S_PU")
     private EntityManager em;
 
+    @EJB
+    private ICandidateJobService candidateJobService;
+
+    @EJB
+    private IReferHashService referHashService;
+
 
     public CandidateService() {
         super(Candidate.class);
@@ -25,6 +38,34 @@ public class CandidateService extends AbstractService<Candidate> implements ICan
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+
+    @Override
+    public void register(String hash, Candidate candidate) {
+        ReferHash referHash = referHashService.findByHash(hash);
+        if (referHash != null) {
+            candidate.setReferee(referHash.getEmployee());
+
+            candidate.setPassword(DigestUtils.md5Hex(candidate.getPassword()));
+            create(candidate);
+
+            CandidateJob candidateJob = new CandidateJob();
+
+            candidateJob.setCandidate(candidate);
+            candidateJob.setJob(referHash.getJob());
+
+            candidateJob.setCandidateJob(new CandidateJobPK(referHash.getJob().getId(), candidate.getCin()));
+            candidateJob.setProgress(Progress.STARTED);
+            candidateJob.setDate(new Date());
+
+            candidateJobService.create(candidateJob);
+
+            Reward reward = new Reward();
+
+
+        } else {
+            throw new NotFoundException("Hash not found");
+        }
     }
 
     @Override
